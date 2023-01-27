@@ -1,6 +1,6 @@
 # uwin-multiregioncommcomp
 
-R code and data associated with the manuscript "Urbanization, climate, and species traits shape mammal communities from local to continental scales"
+R code and data associated with the submitted manuscript "Urbanization, climate, and species traits shape mammal communities from local to continental scales" (In Review)
 
 Please direct all questions to Jeffrey Haight jdhaight.eco(at)gmail.com
 
