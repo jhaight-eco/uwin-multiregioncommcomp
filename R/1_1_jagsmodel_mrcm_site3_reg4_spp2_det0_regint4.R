@@ -1,5 +1,8 @@
-# MULTI-REGION COMMUNITY OCCUPANCY MODEL
-# Based on the modeling frameworks of Sutherland et al. 2016, Tenan et al. 2017, Kery & Royle 2016, and Magle et al. 2021
+#### Code for "Urbanization, climate, and species traits shape mammal communities from local to continental scales" ####
+
+#### 1.1 JAGS code for Fitting Multi-Region Community Occupancy Model ####
+#### Haight, Jeffrey D. et al.
+
 
 # Parameter key:
 # mu = averaged across regions (but not necessarily across species)
@@ -21,7 +24,7 @@
   # delta1 = slope coefficient for species-specific covariate effect on occupancy intercept
   # delta2 = slope coefficient for species-specific covariate effect on occupancy slope (interaction term)
 
-  
+# Model structure derived from the modeling frameworks of Sutherland et al. 2016, Tenan et al. 2017, Kery & Royle 2016, and Magle et al. 2021
 model{
   # Priors
     # Global hyperpriors

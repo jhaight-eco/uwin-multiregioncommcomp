@@ -1,21 +1,24 @@
+#### Code for "Urbanization, climate, and species traits shape mammal communities from local to continental scales" ####
 
-#### Urbanization, climate, and species traits shape mammal communities from local to continental scales #####
-# 3.3 Bayesian Meta-analysis of Community Composition
+#### 1.3 Fitting Bayesian Meta-analysis Model to Community Composition Estimates ####
+#### Haight, Jeffrey D., Mason Fidino, et al.
+
 
 #### Setup ####
   rm(list=ls()) # clear the environment
   gc()
   set.seed(123)
   
-  setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityManuscript_Haightetal2023")
+  setwd("YourFilePathHere")
   
+  # Load necessary packages
   library(dplyr)    # for working with data
   library(jagsUI)   # for fitting models in JAGS
   library(beepr)    # for making a fun sound when the model finishes (if desired)
 
 #### Import Data ####
   # The main dataset containing all the site and regional covariates, indexed by site
-  data_sites <- read.csv("./suppfile_data/data2_output/data_sites_mrcmsummary.csv")
+  data_sites <- read.csv("./data/modelsummary/data_sites_mrcmsummary.csv")
   
   # Species richness and diversity were estimated across 10,0000 random draws 
   # from the posterior distribution of occupancy in the multi-region community model
@@ -102,7 +105,7 @@
   
   # fit model in JAGS, using 'jagsUI'
   m.sr <- jags(
-    model.file = "./suppfile_code/3_3_jagsmodel_alpha.R",
+    model.file = "./R/3_3_jagsmodel_alpha.R",
     data = data_list_rich,
     n.chains = nc,
     parameters.to.save = c("beta", "re_sd"),
@@ -129,9 +132,13 @@
   # view the summary
   round(m.sr.sum, 3)
   
-  # export the model and model summary files
-  #saveRDS(m.sr, "./suppfile_data/data2_output/model2output_logglm_hill0_sample60k.rds")
-  #write.csv(m.sr.sum, "./suppfile_data/data3_outputsummary/model2summary_logglm_hill0_sample60k.csv")
+  # export the model files
+  saveRDS(m.sr, "./data/modeloutput/model2output_logglm_hill0_sample60k.rds")
+  
+  # export the summary of all modeled parameters
+  # these data are located in the second sheet of Supplementary Data 1 (supplementarydata1_summarytables_speciesinfo.xlsx),
+  # alongside other model summaries
+  write.csv(m.sr.sum, "./data/modelsummary/model2summary_logglm_hill0_sample60k.csv")
   
   
 #### Fit Species Diversity Model ####
@@ -156,15 +163,21 @@
   # MCMC parameters
   # for jagsUI, number of samples = ni - nb
   nc <- 3      # number of chains
-  nt <- 3      # number to samples thin by
-  # for illustrative purposes, the next three parameters are 1/10th of their value in the manuscript
+  nt <- 3      # number to thin samples by
+  
+  # Exact settings used for the manuscript analysis
+  #na <- 10000   # number of adaptations
+  #nb <- 120000  # number of burn-ins
+  #ni <- 180000  # number of iterations
+  
+  # Settings with samples reduced by a factor of 100, for illustrative/testing purposes
   na <- 100   # number of adaptations
   nb <- 1200  # number of burn-ins
   ni <- 1800  # number of iterations
   
   # fit model in JAGS
   m.sd <- jags(
-    model.file = "./suppfile_code/3_3_jagsmodel_alpha.R",
+    model.file = "./R/3_3_jagsmodel_alpha.R",
     data = data_list_hill,
     n.chains = nt,
     parameters.to.save = c("beta", "re_sd"),
@@ -191,6 +204,10 @@
   # view the model summary
   round(m.sd.sum, 3)
   
-  # export the model and model summary files
-  #saveRDS(m.sd, "./suppfile_data/data2_output/model3output_logglm_hill1_sample60k.rds")
-  #write.csv(m.sd.sum, "./suppfile_data/data3_outputsummary/model3summary_logglm_hill1_sample60k.csv")
+  # export the model files
+  saveRDS(m.sd, "./data/modeloutput/model3output_logglm_hill1_sample60k.rds")
+  
+  # export the summary of all modeled parameters
+  # these data are located in the third sheet of Supplementary Data 1 (supplementarydata1_summarytables_speciesinfo.xlsx),
+  # alongside other model summaries
+  write.csv(m.sd.sum, "./data/modelsummary/model3summary_logglm_hill1_sample60k.csv")

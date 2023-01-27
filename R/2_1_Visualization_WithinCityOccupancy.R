@@ -1,40 +1,40 @@
-#### Urbanization, climate, and species traits shape mammal communities from local to continental scales #####
-# Haight, Jeffrey D.
-# 2.1 Visualizing Within-City Relationships between Occupancy and Covariates
+#### Urbanization, climate, and species traits shape mammal communities from local to continental scales ####
+
+#### 2.1 Visualizing Within-City Relationships between Occupancy and Covariates ####
+#### Haight, Jeffrey D.
 
 
 #### Setup ####
-rm(list=ls()) # clear the environment
-gc()
-set.seed(4321)
-
-# Set working directory
-setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityManuscript_Haightetal2023")
-
+  rm(list=ls()) # clear the environment
+  gc()
+  set.seed(123)  # needs to be set in order for the points and error bars to 'jitter' the same
+  
+  # Set working directory
+  setwd("YourFilePathHere")
+  
   # Load necessary packages
   library(dplyr)
   library(ggplot2)
-  library(gghighlight)
-  library(viridis)
-  library(RColorBrewer)
   library(peRReo)
   library(png)
-  
+
   # Define color palette for figures
   calle <-  latin_palette("calle13", 9)
 
 
 ##### Import Data #####
   # The main datasets containing all the site and regional covariates
-  data_site_reg <- read.csv("./suppfile_data/data3_outputsummary/data_sites_mrcmsummary.csv")
-  data_reg <- read.csv("./suppfile_data/data3_outputsummary/data_cities_mrcmsummary.csv")
-  data_spp <- read.csv("./suppfile_data/data1_input/ModelInputData_UWIN_allspecies.csv")
+  data_site_reg <- read.csv("./data/modelsummary/data_sites_mrcmsummary.csv")
+  data_reg <- read.csv("./data/modelsummary/data_cities_mrcmsummary.csv")
+  data_spp <- read.csv("./data/modelinput/ModelInputData_UWIN_allspecies.csv")
   
-  # output from models run on ASU Agave computing clusters
-  out <- readRDS("C:/Research/urban/UWIN/data/6_output/modeloutput_mrcm_globalinteractionmodel_sample60k.rds")
-  #out
+  # object output from the 'jags()' function in the 'jagsUI' package
+  # the original model file itself was unfortunately too large to upload to the data repository
+  # this file can be reproduced by running the code in the '1_1_Analysis_FittingMultiRegionCommunityModel.R' script
+  out <- readRDS("./data/modeloutput/modeloutput_mrcm_globalinteractionmodel_sample60k.rds")
+  # out$summary
   
-  # for plotting purposes, some parameters may need to be recalculated, depending on which were monitored in the mode
+  # for plotting purposes, some parameters may need to be recalculated, depending on which were monitored in the original model
   # e.g. the city-average occupancy intercept, from which the city- and species-specific intercept phi0 was estimated 
   mu.phi0 <- apply(out$sims.list$phi0, c(1,2), function(x)   mean(x, na.rm=TRUE)) 
 
@@ -138,8 +138,6 @@ setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityMan
         geom_pointrange(data = data_plot_spp, aes(x = carnivory, y = muphi0, ymin = muphi0_lower95, ymax = muphi0_upper95, group = species),
                         color = "grey30", position = position_dodge(width = 2)) +
         labs(x = "Carnivory (% Vertebrate Diet)", y = "Species Occupancy") +
-        #scale_x_continuous(trans = "log10") +
-        #scale_x_continuous(trans = "log10", breaks = c("0", "1","10","50"), labels = c("0","1", "10", "50")) +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
               axis.text.y = element_text(face = "bold", size = 14), 
               legend.position = "none",
@@ -159,9 +157,7 @@ setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityMan
       seq_bm <- seq(min(data_spp$logmass.std), max(data_spp$logmass.std), length.out = npred) 
       seq_ca <- seq(min(data_spp$carn.std), max(data_spp$carn.std), length.out = npred)
       
-      #plot_bm <- (seq_bm + mean(data_spp$logmass))*sd(data_spp$logmass)  # back-transform that sequence to non-logged values (for plotting purposes)
       plot_bm <- seq(min(data_spp$logmass), max(data_spp$logmass), length.out = npred)
-      #plot_ca <- (seq_ca + mean(data_spp$carn))*sd(data_spp$carn)
       plot_ca <- seq(min(data_spp$carn), max(data_spp$carn), length.out = npred)
       range(plot_bm)
       range(plot_ca)
@@ -292,8 +288,6 @@ setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityMan
         arrange(mass) %>% 
         filter(!species %in% c("black_bear", "cougar", "flying_squirrel_sp", "hooded_skunk", "mountain beaver","north_american_beaver", "richardson_ground_squirrel", "weasel_sp")) # exclude rarely detected species from plot
       
-      set.seed(123)  # needs to be set in order for the points and error bars to jitter the same
-      
       plot_carn2 <- ggplot() +
         theme_classic()+ 
         geom_ribbon(data = data_pred_urbocc, aes(x = carnivory*100+0.001, y = ca_med, ymin = ca_lower95, ymax = ca_upper95), 
@@ -316,9 +310,8 @@ setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityMan
       plot_carn2
       
       
-      
-      
-##### Supplementary Figure: Community-Averaged Occupancy vs. Within-City Covariates #####
+
+##### Extended Data/Supplementary Figure: Community-Averaged Occupancy vs. Within-City Covariates #####
   # Prepare to predict across gradients of each within-city covariate
       # Set up predictions
       str(tmp <- out$sims.list)           # grab MCMC samples

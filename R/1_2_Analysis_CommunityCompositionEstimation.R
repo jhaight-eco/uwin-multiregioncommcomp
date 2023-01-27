@@ -1,6 +1,7 @@
-#### Urbanization, climate, and species traits shape mammal communities from local to continental scales #####
-# Haight, Jeffrey D.
-# 1.2 Extracting and Summarizing Community Composition Estimates from the Multi-City Community Occupancy Model
+#### Code for "Urbanization, climate, and species traits shape mammal communities from local to continental scales" ####
+
+#### 1.2 Extracting and Summarizing Community Composition Estimates from the Multi-Region Community Occupancy Model ####
+#### Haight, Jeffrey D. et al.
 
 
 #### Setup ####
@@ -9,7 +10,7 @@
   set.seed(123)
 
 # Set working directory
-  setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityManuscript_Haightetal2023")
+  setwd("YourFilePathHere")
 
 # Load necessary packages
   library(dplyr)    # for working with data
@@ -17,9 +18,13 @@
   library(beepr)    # for making a fun sound when the model finishes (if desired)
 
 # Load model input and output objects
-  # the model output file takes up a notable amount of memory
-  load("./suppfile_data/data1_input/ModelInputData_UWIN_MRCM.RData")
-  out <- readRDS("./suppfile_data/data2_output/model1output_mrcm_globalinteractionmodel_sample60k.rds") # large file
+  load("./data/modelinput/ModelInputData_UWIN_MRCM.RData")
+  
+  # this was the object output from the 'jags()' function in the 'jagsUI' package
+  # the model file itself was unfortunately too large to upload to the data repository
+  # this file can be reproduced by running the code in the '1_1_Analysis_FittingMultiRegionCommunityModel.R' script
+  out <- readRDS("./data/modeloutput/model1output_mrcm_globalinteractionmodel_sample60k.rds")  # this also takes up a notable amount of memory to input
+  
 
   str(tmp <- out$sims.list)   # grab MCMC samples
   length(tmp[[1]])            # number of MCMC samples
@@ -147,9 +152,6 @@
     K_tot[,18],
     K_tot[,19],
     K_tot[,20])  
-  #length(sites_include)
-  #which(is.na(sites_include)==FALSE)    # which sites to keep
-  #sites_exclude[!is.na(sites_include[])]
   
   # drop the non-surveyed sites
   zCH <- zCH[,,which(is.na(sites_include)==FALSE)]
@@ -157,7 +159,7 @@
   hill2 <- hill2[,which(is.na(sites_include)==FALSE)]
 
   # Summarize local species richness 
-  # this is equivalent to hill0, but here we use an incidence-based estimation instead of occupancy-based
+  # this is essentially another way to estimate hill0, but here we use an incidence-based estimation instead of occupancy-based
   SR <- apply(zCH, c(1,3), sum)
 
   Sys.time()
@@ -175,11 +177,11 @@
   RR <- apply(tmp$w, c(1,3), sum)     
 
 #### Export Estimates ####
-  #saveRDS(SR, "./suppfile_data/data2_output/model1output_hill0predicted_sample10k.rds")
-  #saveRDS(hill1, "./suppfile_data/data2_output/model1output_hill1predicted_sample10k.rds")
-  #saveRDS(hill2, "./suppfile_data/data2_output/model1output_hill2predicted_sample10k.rds")
-  #saveRDS(pm_w, "./suppfile_data/data2_output/model1output_pm_w.rds")
-  #saveRDS(RR, "./suppfile_data/data2_output/model1output_RRpredicted.rds")
+  #saveRDS(SR, "./data/modelsummary/model1output_hill0predicted_sample10k.rds")
+  #saveRDS(hill1, "./data/modelsummary/model1output_hill1predicted_sample10k.rds")
+  #saveRDS(hill2, "./data/modelsummary/model1output_hill2predicted_sample10k.rds")
+  #saveRDS(pm_w, "./data/modelsummary/model1output_pm_w.rds")
+  #saveRDS(RR, "./data/modelsummary/model1output_RRpredicted.rds")
 
 
 #### Summarize Estimates ####
@@ -240,7 +242,10 @@
   data_reg$RR_5 <- c(t(cri_RR[3,]))
   data_reg$RR_95 <- c(t(cri_RR[4,]))
 
-# Prep the data for export, dropping the columns that were no longer relevant to the final model
+  
+# Prep the data for export, 
+  # dropping the columns that were no longer relevant to the final model,
+  # keep the ones that were included as covariates
   colnames(data_site_reg)    # lots and lots of columns
   colnames(data_reg)
   
@@ -316,6 +321,5 @@
   
   
 #### Export Summarized Estimates ####
-  # Include all the relevant site- and city-level variables 
-  #write.csv(data_site_export, "./suppfile_data/data3_outputsummary/data_sites_mrcmsummary.csv", row.names = FALSE)
-  #write.csv(data_reg_export, "./suppfile_data/data3_outputsummary/data_cities_mrcmsummary.csv", row.names = FALSE)
+  write.csv(data_site_export, "./data/modelsummary/data_sites_mrcmsummary.csv", row.names = FALSE)
+  write.csv(data_reg_export, "./data/modelsummary/data_cities_mrcmsummary.csv", row.names = FALSE)

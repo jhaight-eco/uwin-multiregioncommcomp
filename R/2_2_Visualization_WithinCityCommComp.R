@@ -1,37 +1,23 @@
-#### Urbanization, climate, and species traits shape mammal communities from local to continental scales #####
-# Haight, Jeffrey D.
-# 2.2 Visualizing Within-City Relationships between Community Composition and Covariates
+#### Urbanization, climate, and species traits shape mammal communities from local to continental scales ####
+
+#### 2.2 Visualizing Within-City Relationships between Community Composition and Covariates ####
+#### Haight, Jeffrey D.
 
 
 #### Setup ####
-rm(list=ls()) # clear the environment
-gc()
-set.seed(4321)
-
-# Set working directory
-setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityManuscript_Haightetal2023")
+  rm(list=ls()) # clear the environment
+  gc()
+  set.seed(4321)
+  
+  # Set working directory
+  setwd("YourFilePathHere")
 
   # Load necessary packages
   library(dplyr)
-  library(tidyverse)
-  
-  # modeling packages
-  library(jagsUI)
-  library(runjags)
-  
-  # visualization packages
-  library(flextable)
-  library(ggplot2)
-  library(gghighlight)
-  library(ggtern)
-  library(viridis)
-  library(RColorBrewer)
-  library(nationalparkcolors)
+  library(jagsUI)  # modeling package
+  library(ggplot2) # visualization packages
   library(peRReo)
-  library(ggridges)
   library(png)
-  library(patchwork)
-  library(ggcorrplot)
   library(GGally)
   
   # Define color palette for figures
@@ -44,11 +30,11 @@ setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityMan
   data_site <- read.csv("./suppfile_data/data3_outputsummary/data_sites_mrcmsummary.csv")
   
   # import the meta-analysis models and their parameter summaries
-  m.sr <- readRDS("./suppfile_data/data2_output/model2output_logglm_hill0_sample60k.rds")
-  m.sd <- readRDS("./suppfile_data/data2_output/model3output_logglm_hill1_sample60k.rds")
+  m.sr <- readRDS("./modeloutput/model2output_logglm_hill0_sample60k.rds")
+  m.sd <- readRDS("./modeloutput/model3output_logglm_hill1_sample60k.rds")
   
-  m.sr.sum <- read.csv("C:/Research/urban/UWIN/data/data3_outputsummary/model2summary_logglm_hill0_sample60k.csv")
-  m.sd.sum <- read.csv("C:/Research/urban/UWIN/data/data3_outputsummary/model3summary_logglm_hill1_sample60k.csv")
+  m.sr.sum <- read.csv("./data/modelsummary/model2summary_logglm_hill0_sample60k.csv")
+  m.sd.sum <- read.csv("./data/modelsummary/model3summary_logglm_hill1_sample60k.csv")
   
   # get the mcmc steps all in one matrix
   m.sr.mcmc <- do.call(
@@ -75,7 +61,7 @@ setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityMan
   m.sr.sum
   m.sd.sum
 
-#### Supplementary Figure: Relationships Among Within-City Covariates ####
+#### Extended Data/Supplementary Figure: Relationships Among Within-City Covariates ####
   var.loc <- data_site %>%
     dplyr::select(
       Impervious,
@@ -83,11 +69,10 @@ setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityMan
       cropland
     )
   
-  plot <- ggpairs(var.loc, title= NULL,
+  plot.corrloc <- ggpairs(var.loc, title= NULL,
                   columnLabels = c("Urban \nIntensity", 
                                    "Natural Patch \nDensity",
                                    "Agricultural \nIntensity"),
-                  #mapping = ggplot2::aes(color = "blue"),
                   upper = list(continuous = wrap("cor", method = "pearson")),
     ) + 
     theme_bw() + 
@@ -97,16 +82,8 @@ setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityMan
       axis.title.x = element_text(face = "bold", size = 9), 
       axis.title.y = element_text(face = "bold", size = 9)
     )
-  
-  
-  ggsave("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/manuscript/figures/supplemental/ExtendedData_covariatecorrelations_withincity.png",
-         plot,
-         width = 6,
-         height = 4,
-         units = "in",
-         dpi = 300)
-  
-  plot
+ 
+  plot.corrloc
   
 
 #### Figure 2: Within-City Covariates vs. Species Richness and Diversity ####

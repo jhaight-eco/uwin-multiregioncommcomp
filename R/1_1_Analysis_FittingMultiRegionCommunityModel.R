@@ -1,6 +1,7 @@
-#### Urbanization, climate, and species traits shape mammal communities from local to continental scales #####
-# Haight, Jeffrey D.
-# 1.1 Fitting the Multi-Region Community Occupancy Model
+#### Code for "Urbanization, climate, and species traits shape mammal communities from local to continental scales" ####
+
+#### 1.1 Fitting the Multi-Region Community Occupancy Model ####
+#### Haight, Jeffrey D. et al.
 
 
 #### Setup ####
@@ -9,7 +10,7 @@
   set.seed(4321)
 
   # Set working directory
-  setwd("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/UWIN_CrossCityManuscript_Haightetal2023")
+  setwd("YourFilePathHere")
 
   # Load necessary packages
   library(jagsUI)   # for fitting models in JAGS
@@ -18,7 +19,7 @@
 
 #### Import and View Data ####
 # Load data
-load("./suppfile_data/data1_input/ModelInputData_UWIN_MRCM.RData")
+load("./data/modelinput/ModelInputData_UWIN_MRCM.RData")
 
 
 # Detection and Survey Data
@@ -142,20 +143,19 @@ inits <- function() { list(mu.omega=runif(1, 0, 1),
 
 
 # MCMC settings
-  # Exact settings used for the actual analysis
-  #na <- 10000	   #pre-burnin
-  #nb <- 120000	 #burnin
-  #ni <- 180000  #iterations (including burn-in with jagsUI)
-  #nt <- 3
-  #nc <-3
+  nc <-3       # number of MCMC chains
+  nt <- 3      # number to thin samples by
+
+  # Exact settings used for the manuscript analysis
+  #na <- 10000   # number of adaptations
+  #nb <- 120000  # number of burn-ins
+  #ni <- 180000  # number of iterations
   
-  # Samples reduced by a factor of 100, for illustrative purposes
-  # Approximate runtime (on a laptop with 8 GB of RAM): ~26 minutes
-  na <- 100	   #pre-burnin
-  nb <- 1200	 #burnin
-  ni <- 1800  #iterations (including burn-in with jagsUI)
-  nt <- 3
-  nc <-3
+  # Settings with samples reduced by a factor of 100, for illustrative/testing purposes
+  # Approximate runtime (on a laptop with 12 GB of RAM): ~26 minutes
+  na <- 100   # number of adaptations
+  nb <- 1200  # number of burn-ins
+  ni <- 1800  # number of iterations
 
 
 # Parameters to monitor
@@ -205,8 +205,7 @@ parameters <- c("mu.omega","omega", "slope.omega1", "slope.omega2", "slope.omega
 out.global <- jags(bugs.data, 
                    inits = inits, 
                    parameters.to.save = parameters, 
-                   #model = "C:/Research/urban/UWIN/code/jags/mrcm_site3_reg5_spp2_det1_regint5.R", 
-                   model = "./suppfile_code/1_1_jagsmodel_mrcm_site3_reg4_spp2_det0_regint4.R", 
+                   model = "./R/1_1_jagsmodel_mrcm_site3_reg4_spp2_det0_regint4.R", 
                    n.adapt = na,
                    n.chains = nc, 
                    n.thin = nt, 
@@ -220,5 +219,11 @@ cat(paste(paste('Posterior computed in ', elapsed.time, sep=''), ' minutes/n', s
 
 
 #### Export Model Outputs ####
-#saveRDS(out.global, "./suppfile_data/data2_output/model1output_mrcm_globalinteractionmodel_sample60k.rds")
-#write.csv(out.global$summary, "./suppfile_data/data3_outputsummary/model1summary_mrcm_globalinteractionmodel_sample60k.csv")
+  # first, export the object output from the 'jags()' function in the 'jagsUI' package
+  # this model file was also too large to upload to the data repository
+  saveRDS(out.global, "./data/modelsummary/model1output_mrcm_globalinteractionmodel_sample60k.rds")
+
+  # export the summary of all modeled parameters
+  # these data are located in the first sheet of Supplementary Data 1 (supplementarydata1_summarytables_speciesinfo.xlsx),
+  # alongside other model summaries
+  write.csv(out.global$summary, "data/modeloutput/model1summary_mrcm_globalinteractionmodel_sample60k.csv")
