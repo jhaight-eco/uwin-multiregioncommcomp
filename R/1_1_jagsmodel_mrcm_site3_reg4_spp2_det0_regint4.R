@@ -9,20 +9,26 @@
 # tau = precision
 
 # Intercepts
-  # mu.phi0 = intercept for community-average occupancy in each region (mean across species)
-  # phi0 = intercept for occupancy for each species in each region
-  # mu.eta0 = intercept for community-average detection in each region (mean across species)
-  # eta0 = intercept for detection for each species in each region
+  # phi0 = species- and region-specific occupancy intercept
+  # mu.phi0 = species-specific occupancy intercept, averaged across regions
+  # mu.beta0 = community-average occupancy intercept, averaged across regions
+  # eta0 = species- and region-specific detection intercept
+  # mu.eta0 = species-specific occupancy intercept, averaged across regions
+  # mu.alpha0 = community-average detection intercept, averaged across regions 
   # mu.omega = intercept for regional (relative) species richness
 
 # Slopes
-  # beta1+ = slope coefficient for covariate effects on community-average occupancy (global average across regions)
-  # phi1+ = slope coefficient for covariate effects on occupancy for each species (average across regions = mu.phi1)
-  # alpha1+ (not included) = slope coefficient for covariate effects on community-average detection  (global average across regions)
-  # eta1+ (not included) = slope coefficient for covariate effects on detection for each species (average across regions: e.g. mu.eta1)
+  # phi1+ = species- and region-specific slopes for covariate effects on occupancy 
+  # mu.phi1 = region-averaged, species-specific slopes for covariate effects on occupancy 
+  # beta1+ = region-averaged slopes for covariate effects on community-average occupancy (global average across regions)
   # slope.omega1 = regional covariate effect on regional (relative) species richness
   # delta1 = slope coefficient for species-specific covariate effect on occupancy intercept
-  # delta2 = slope coefficient for species-specific covariate effect on occupancy slope (interaction term)
+  # delta2 = slope coefficient for species-specific covariate effect on occupancy-covariate #1 (urbanization) slope
+  # Parameters not included in the final model:
+  # eta1+ = species- and region-specific slopes for covariate effects on detection 
+  # mu.eta1 = region-averaged, species-specific slopes for covariate effects on detection 
+  # alpha1+ = region-averaged slopes for covariate effects on community-average detection (global average across regions)
+
 
 # Model structure derived from the modeling frameworks of Sutherland et al. 2016, Tenan et al. 2017, Kery & Royle 2016, and Magle et al. 2021
 model{
