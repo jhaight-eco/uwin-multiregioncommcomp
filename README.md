@@ -7,7 +7,7 @@ This `README` file
 Please direct all questions to Jeffrey Haight jdhaight.eco(at)gmail.com
 
 Full author list:
-Haight, J. D.,; S. J. Hall; M. Fidino; S. A. Adalsteinsson; A. A. Ahlers; J. Angstman5; W. J. B. Anthonysamy; E. Biro3; M. K. Collins7; B. Dugelby; T. Gallo9; A. M. Green10; L. Hartley11; M. J. Jordan; C. A. M. Kay2; E. W. Lehrer2; R. A. Long13; B. MacDougall14; S. B. Magle2; D. E. Minier15; C. Mowry; M. Murray; K. Nininger; M. E. Pendergast18; K. R. Remine13; T. Ryan5; C. Salsbury; C. J. Schell; Ç. Șekercioğlu; C. J. Shier; K. C. Simon; C. C. St. Clair; T. Stankowich; C. J. Stevenson; L. Wayne; D. Will; J. Williamson; L. Wilson; A. J. Zellmer; J. S. Lewis
+Haight, J. D.,; S. J. Hall; M. Fidino; S. A. Adalsteinsson; A. A. Ahlers; J. Angstman; W. J. B. Anthonysamy; E. Biro; M. K. Collins; B. Dugelby; T. Gallo; A. M. Green; L. Hartley; M. J. Jordan; C. A. M. Kay; E. W. Lehrer; R. A. Long; B. MacDougall; S. B. Magle; D. E. Minier; C. Mowry; M. Murray; K. Nininger; M. E. Pendergast; K. R. Remine; T. Ryan; C. Salsbury; C. J. Schell; Ç. Șekercioğlu; C. J. Shier; K. C. Simon; C. C. St. Clair; T. Stankowich; C. J. Stevenson; L. Wayne; D. Will; J. Williamson; L. Wilson; A. J. Zellmer; J. S. Lewis
 
 
 
