@@ -92,9 +92,9 @@
     )
   
   plot.corrloc <- ggpairs(var.loc, title= NULL,
-                  columnLabels = c("Urban \nIntensity", 
-                                   "Natural Patch \nDensity",
-                                   "Agricultural \nIntensity"),
+                  columnLabels = c("Local \nUrbanization", 
+                                   "Local \nPatch Density",
+                                   "Local \nAgricultural Footprint"),
                   upper = list(continuous = wrap("cor", method = "pearson")),
     ) + 
     theme_bw() + 
@@ -107,6 +107,13 @@
  
   plot.corrloc
   
+  ggsave("./figures/ExtendedDataFigure_collinearity_localvariables.png",
+         plot.corrloc,
+         width = 6,
+         height = 5,
+         units = "in",
+         dpi = 300)
+  
   # Figure 2: Urbanization vs. Richness/Diversity Trends Under Contrasting Regional Variables ----
   # First, we will use slopes and intercepts from the Bayesian meta-analysis
   # to predict richness and diversity across ranges of covariate values under multiple regional conditions
@@ -117,42 +124,11 @@
   # Option B. Base it on each city's actual sequence of values # Values of local, within-city covariates to predict off of. These were standardized by city
   # Since we are showing the relationships within specific cities, it makes more sense to predict off of their 
   # a range of hypothetical values equivalent to their actual gradient of urbanization (with patch density and agriculture held constant)
-  #nline <- length(cities)  # one line for each city
-  #impervious <- rep(NA, npred*nline)
-  #urb.pred <- rep(NA, npred*nline)
-  #pd.pred <- rep(NA, npred*nline)
-  #ag.pred <- rep(NA, npred*nline)
   
-  # Use standardized covariate values from each city
-  #for(i in 1:nline){
-  #  city.select <- cities[i]
-  #  r <- data.site %>%
-  #    filter(city == city.select)
-  #  impervious[(i*npred-npred+1):(i*npred)] <- seq(min(r$Impervious), max(r$Impervious), length.out = npred)
-  #  urb.pred[(i*npred-npred+1):(i*npred)] <- seq(min(r$imperv_std), max(r$imperv_std), length.out = npred)
-  #  pd.pred[(i*npred-npred+1):(i*npred)] <- rep(median(r$pd_undev_std), length.out = npred)
-  #  ag.pred[(i*npred-npred+1):(i*npred)] <- rep(median(r$cropland_std), length.out = npred)
-  #}
-  
-  # a design matrix of the standardized covariate values
-  #dm.city.real <- cbind(
-  #  1,# intercept
-  #  urb.pred, #urban
-  #  pd.pred, #pd_undev
-  #  ag.pred, # cropland
-  #  rep(data.reg$EVI_av_std, each = npred), # EVI
-  #  urb.pred*rep(data.reg$EVI_av_std, each = npred),  #urb*EVI
-  #  rep(data.reg$mat_av_std, each = npred), #mat,
-  #  urb.pred*rep(data.reg$mat_av_std, each = npred), # urb*mat,
-  #  rep(data.reg$urb_reg_std, each = npred), # URB,
-  #  urb.pred*rep(data.reg$urb_reg_std, each = npred), # urb*URB
-  #  rep(data.reg$yrs_col_std, each = npred), # AGE,
-  #  urb.pred*rep(data.reg$yrs_col_std, each = npred) # urb*AGE
-  #)
-  # if you want to predict across hypothetical gradients of regional covariates
+  # For Option B, please see 'Magnitude of Relationships within Contrasting Cities' section below
   
   
-  # We will go with Option A, holding all other variables constant, as it makes for a clearer visual 
+  # Here, we will go with Option A, holding all other variables constant, as it makes for a clearer visual 
   # that more effectively conveys the statistical relationships between local urbanization and regional covariates
   cities <- data.reg$city
   #nline <- length(cities)        # how many different lines you're wanting to plot
@@ -165,11 +141,17 @@
   pd.pred <- seq(min(data.site$pd_undev_std), max(data.site$pd_undev_std), length.out = npred)
   ag.pred <- seq(min(data.site$cropland_std), max(data.site$cropland_std), length.out = npred)
   
-  
-  pred.EVI <- seq(min(data.reg$EVI_av_std), max(data.reg$EVI_av_std), length.out = nline)
-  pred.MAT <- seq(min(data.reg$mat_av_std), max(data.reg$mat_av_std), length.out = nline)
-  pred.URB <- seq(min(data.reg$urb_reg_std), max(data.reg$urb_reg_std), length.out = nline)
-  pred.AGE <- seq(min(data.reg$yrs_col_std), max(data.reg$yrs_col_std), length.out = nline)
+  # predicting across moderate ranges of regional variables (excluding unrealistic combinations of greenness and temperature)
+  data.reg %>% select(city, EVI_av, mat_av, urb_reg, yrs_col)
+  pred.EVI <- seq((0.2-mean(data.reg$EVI_av))/sd(data.reg$EVI_av), (0.29-mean(data.reg$EVI_av))/sd(data.reg$EVI_av), length.out = nline)
+  pred.MAT <- seq((10-mean(data.reg$mat_av))/sd(data.reg$mat_av), (15-mean(data.reg$mat_av))/sd(data.reg$mat_av), length.out = nline) # from 10 to 15 degrees
+  pred.URB <- seq((0.4-mean(data.reg$urb_reg))/sd(data.reg$urb_reg), (0.8-mean(data.reg$urb_reg))/sd(data.reg$urb_reg), length.out = nline)
+  pred.AGE <- seq((150-mean(data.reg$yrs_col))/sd(data.reg$yrs_col), (250-mean(data.reg$yrs_col))/sd(data.reg$yrs_col), length.out = nline)
+  # predicting across ranges that includes the extreme values (not as realistic)
+  #pred.EVI <- seq(min(data.reg$EVI_av_std), max(data.reg$EVI_av_std), length.out = nline)
+  #pred.MAT <- seq(min(data.reg$mat_av_std), max(data.reg$mat_av_std), length.out = nline)
+  #pred.URB <- seq(min(data.reg$urb_reg_std), max(data.reg$urb_reg_std), length.out = nline)
+  #pred.AGE <- seq(min(data.reg$yrs_col_std), max(data.reg$yrs_col_std), length.out = nline)
   
   # objects for storing prediction summary stats
   preds.sr.mean <- rep(NA, npred*nline)
@@ -412,6 +394,7 @@
           legend.position = "none",
           legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
     ) 
+  plot.sr
   
   #data.plot <- preds.sd.city
   plot.sd <- ggplot() +
@@ -435,10 +418,9 @@
           legend.position = "none",
           legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
     )
-  range(data.plot$EVI)
-  plot.sr
   plot.sd
   
+  range(data.plot$EVI)
   
   
   ggsave("./figures/figure2e_urbanization_vs_richness_EVIcontrast.png",
@@ -482,6 +464,7 @@
           legend.position = "none",
           legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
     ) 
+  plot.sr
   
   plot.sd <- ggplot() +
     theme_bw() + 
@@ -504,9 +487,9 @@
           legend.position = "none",
           legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
     ) 
-  range(data.plot$MAT)
-  plot.sr
   plot.sd
+  
+  range(data.plot$MAT)
   
   ggsave("./figures/figure2f_urbanization_vs_richness_MATcontrast.png",
          plot.sr,
@@ -993,12 +976,163 @@
           axis.title.x = element_text(face = "bold", size = 16), 
           axis.title.y = element_text(face = "bold", size = 16),
     )
+
+# Magnitude of Relationships with Within-City Covariates ----
+  # In writing the results, it may be helpful to be able to make statements about the 
+  # magnitude of the covariate effects, but written in real terms
+  # e.g. the global-mean effect of urbanization on richness = -0.09, on diversity = -0.07
+  mean(m.sr$sims.list$beta[,2])
+  mean(m.sd$sims.list$beta[,2])
+  # this is the negativity of the relationship when all other variables are held at their mean (zero)
+  # what does that mean in terms of impervious surface?
+  # what then, is the difference in occupancy at 0% impervious surface vs. 10% vs. 50%
+  preds_sr_urb[1,]
+  preds_sd_urb[1,]
+  preds_sr_urb[200,]
+  preds_sd_urb[200,]
+  # percent change
+  (preds_sr_urb$median[200] - preds_sr_urb$median[1])/preds_sr_urb$median[1]*100
+  (preds_sd_urb$median[200] - preds_sd_urb$median[1])/preds_sd_urb$median[1]*100
   
+  # How about patch density?
+  mean(m.sr$sims.list$beta[,3])
+  mean(m.sd$sims.list$beta[,3])
+    preds_sr_pd[1,]
+    preds_sd_pd[1,]
+    preds_sr_pd[200,]
+    preds_sd_pd[200,]
+    #
+    (preds_sr_pd$median[200] - preds_sr_pd$median[1])/preds_sr_pd$median[1]*100 # on average, <1 (0.85) additional species across the whole gradient
+    (preds_sd_pd$median[200] - preds_sd_pd$median[1])/preds_sd_pd$median[1]*100
   
+  # How about agricultural footprint?
+    mean(m.sr$sims.list$beta[,4])
+    mean(m.sd$sims.list$beta[,4])
+    preds_sr_ag[1,]
+    preds_sd_ag[1,]
+    preds_sr_ag[200,]
+    preds_sd_ag[200,]
+    #
+    (preds_sr_ag$median[200] - preds_sr_ag$median[1])/preds_sr_ag$median[1]*100 # on average, <1 (0.85) additional species across the whole gradient
+    (preds_sd_ag$median[200] - preds_sd_ag$median[1])/preds_sd_ag$median[1]*100
+  
+   
+# Magnitude of Relationships within Contrasting Cities ----
+    # We also want to be able to make statements about trends wihin different cities
+    # For instance, to back up statements such as 
+    # "Species occupancy and diversity were most negatively related to urbanization in the warmest, least vegetated cities"
+    # it may helpful to be able to say that the effect of urbanization was XX times greater in the least vegetated city (Phoenix) than in one of the greenest city with comparable temperature (Sanford)
+    
+    # For this, it may be helpful to predict across across ranges of actual values for each city
+    nline <- length(cities)  # one line for each city
+    npred <- 200               # in this case, we can predict across fewer values, for simplicity sace
+    impervious <- rep(NA, npred*nline)
+    urb.pred <- rep(NA, npred*nline)
+    pd.pred <- rep(NA, npred*nline)
+    ag.pred <- rep(NA, npred*nline)
+    
+    # Use standardized covariate values from each city
+    for(i in 1:nline){
+      city.select <- cities[i]
+      r <- data.site %>%
+        filter(city == city.select)
+      impervious[(i*npred-npred+1):(i*npred)] <- seq(min(r$Impervious), max(r$Impervious), length.out = npred)
+      urb.pred[(i*npred-npred+1):(i*npred)] <- seq(min(r$imperv_std), max(r$imperv_std), length.out = npred)
+      pd.pred[(i*npred-npred+1):(i*npred)] <- rep(median(r$pd_undev_std), length.out = npred)
+      ag.pred[(i*npred-npred+1):(i*npred)] <- rep(median(r$cropland_std), length.out = npred)
+    }
+    
+    # a design matrix of the standardized covariate values
+    dm.city.real <- cbind(
+      1,# intercept
+      urb.pred, #urban
+      # to use real values of patch density and agriculture
+      #pd.pred, # pd_undev
+      #ag.pred, # cropland
+      # to hold patch density and agriculture constant at their mean
+      0,
+      0,
+      rep(data.reg$EVI_av_std, each = npred), # EVI
+      urb.pred*rep(data.reg$EVI_av_std, each = npred),  #urb*EVI
+      rep(data.reg$mat_av_std, each = npred), #mat,
+      urb.pred*rep(data.reg$mat_av_std, each = npred), # urb*mat,
+      rep(data.reg$urb_reg_std, each = npred), # URB,
+      urb.pred*rep(data.reg$urb_reg_std, each = npred), # urb*URB
+      rep(data.reg$yrs_col_std, each = npred), # AGE,
+      urb.pred*rep(data.reg$yrs_col_std, each = npred) # urb*AGE
+    )
+    
+    preds.sr.city <- m.sr.mcmc[,1:12] %*% t(dm.city.real) %>% exp()  # predict and exponentiate, because that's the reverse of the log-link
+    preds.sd.city <- m.sd.mcmc[,1:12] %*% t(dm.city.real) %>% exp()
+    preds.sr.cri <- apply(preds.sr.city, 2, quantile, probs = c(0.025,0.5,0.975)) %>% t() %>% data.frame()
+    preds.sd.cri <- apply(preds.sd.city, 2, quantile,  probs = c(0.025,0.5,0.975)) %>% t() %>% data.frame()
+    
+    
+    
+    data.plot.sr.city <- data.frame(
+      "city" = rep(data.reg$city, each = npred),
+      "EVI" = rep(data.reg$EVI_av, each = npred),
+      "MAT" = rep(data.reg$mat_av, each = npred),
+      "URB" = rep(data.reg$urb_reg, each = npred),
+      "AGE" = rep(data.reg$yrs_col, each = npred),
+     "impervious" = impervious,
+     "mean" = apply(preds.sr.city, c(2), function(x)   mean(x, na.rm=TRUE)) ,   # posterior mean
+     "lower95" = preds.sr.cri[,1],
+     "median" = preds.sr.cri[,2],
+     "upper95" = preds.sr.cri[,3]
+    )
+    
+    data.plot.sd.city <- data.frame(
+      "city" = rep(data.reg$city, each = npred),
+      "EVI" = rep(data.reg$EVI_av, each = npred),
+      "MAT" = rep(data.reg$mat_av, each = npred),
+      "URB" = rep(data.reg$urb_reg, each = npred),
+      "AGE" = rep(data.reg$yrs_col, each = npred),
+      "impervious" = impervious,
+      "mean" = apply(preds.sd.city, c(2), function(x)   mean(x, na.rm=TRUE)) ,   # posterior mean
+      "lower95" = preds.sd.cri[,1],
+      "median" = preds.sd.cri[,2],
+      "upper95" = preds.sd.cri[,3]
+    )
+    
+    # now that values have been predicted, let's compare the trends (see plots for these in the 'Spare Code' below)
+    # we can do this simply by comparing the slope between the predicted values at minimum and maximum levels of impervious surface
+
+    # First, compare a low EVI city (Phoenix) to high EVI city (Sanford) with similar temperatures
+    t <- data.plot.sr.city %>% filter(city %in% c("safl")) %>% select(impervious, median)
+    slope1 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1])   # rise over run
+    t <- data.plot.sr.city %>% filter(city %in% c("phaz")) %>% select(impervious, median)
+    slope2 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1])
+    slope2/slope1
+    
+    t <- data.plot.sd.city %>% filter(city %in% c("safl")) %>% select(impervious, median)
+    slope1 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1])
+    t <- data.plot.sd.city %>% filter(city %in% c("phaz")) %>% select(impervious, median)
+    slope2 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1])
+    slope2/slope1
+    
+    
+    # Temperature
+    # compare a low  MAT city (Salt Lake City) to high MAT city (Metro LA) with similar average EVI (0.19)
+    t <- data.plot.sr.city %>% filter(city %in% c("scut")) %>% select(impervious, median)
+    (slope1 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))
+    t <- data.plot.sr.city %>% filter(city %in% c("mela")) %>% select(impervious, median)
+    (slope2 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))
+    slope2/slope1
+    
+    t <- data.plot.sd.city %>% filter(city %in% c("scut")) %>% select(impervious, median)
+    (slope1 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))
+    t <- data.plot.sd.city %>% filter(city %in% c("mela")) %>% select(impervious, median)
+    (slope2 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))
+    slope2/slope1
+    
+    
+    
 # Spare Code ----
-  # Plot Cities with Contrasting EVI ====
+  #
+  ##### Plot Cities with Contrasting EVI ====
   # To provide maximum contrast, compare a low EVI city (Phoenix) to high EVI city (Sanford) with similar temperatures
-  data.plot <- preds.sr.city
+  data.plot <- data.plot.sr.city
   plot.sr <- ggplot() +
     theme_bw() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = EVI), 
@@ -1018,8 +1152,9 @@
           legend.position = "none",
           legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
     ) 
+  plot.sr
   
-  data.plot <- preds.sd.city
+  data.plot <- data.plot.sd.city
   plot.sd <- ggplot() +
     theme_bw() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = EVI), 
@@ -1040,13 +1175,12 @@
           legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
     )
   
-  plot.sr
   plot.sd
   
   
-  # Plot Cities with Contrasting MAT ====
+  ##### Plot Cities with Contrasting MAT ====
   # compare a low  MAT city (Salt Lake City) to high MAT city (Metro LA) with similar average EVI (0.19)
-  data.plot <- preds.sr.city
+  data.plot <- data.plot.sr.city
   plot.sr <- ggplot() +
     theme_bw() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = MAT), 
@@ -1054,7 +1188,7 @@
     #geom_smooth(data = data.plot, aes(x = urban, y = median, group = city),se = FALSE, color = "grey70", lwd = 1.2) +
     geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = MAT), 
                 se = FALSE) +
-    gghighlight(city %in% c("scut", "mela"))+
+    gghighlight(city %in% c("edal", "mela"))+
     scale_fill_distiller(palette = "RdYlBu", direction = -1)+
     scale_color_distiller(palette = "RdYlBu", direction = -1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
@@ -1067,15 +1201,16 @@
           legend.position = "none",
           legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
     ) 
+  plot.sr
   
-  data.plot <- preds.sd.city
+  data.plot <- data.plot.sd.city
   plot.sd <- ggplot() +
     theme_bw() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = MAT), 
                 alpha = 0.3) + 
     geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = MAT), 
                 se = FALSE) +
-    gghighlight(city %in% c("scut", "mela"))+
+    gghighlight(city %in% c("edal", "mela"))+
     scale_fill_distiller(palette = "RdYlBu", direction = -1)+
     scale_color_distiller(palette = "RdYlBu", direction = -1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
@@ -1089,15 +1224,14 @@
           legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
     ) 
   
-  plot.sr
   plot.sd
   
 
   
-  # Plot Cities with Contrasting URB ====
+  ##### Plot Cities with Contrasting URB ====
   # This is a little trickier to see, as there wasn't a substantial relationship
   # But, two cities with low URB (Salt Lake) and high URB (Chicago), but similar other covariates
-  data.plot <- preds.sr.city
+  data.plot <- data.plot.sr.city
   plot.sr <- ggplot() +
     theme_bw() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = URB), 
@@ -1118,7 +1252,7 @@
           legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
     ) 
   
-  data.plot <- preds.sd.city
+  data.plot <- data.plot.sd.city
   plot.sd <- ggplot() +
     theme_bw() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = URB), 
@@ -1143,11 +1277,11 @@
   plot.sd
 
   
-  # Plot Cities with Contrasting AGE ====
+  ##### Plot Cities with Contrasting AGE ====
   # Again, not a substantial difference, even for the two cities that should have a maximum contrast
   # Newer city (Indianapolis) and older city (Wilmington) have similar EVI, MAT (though Indianapolis is slighly more urbanized)
   # there are cities with larger age differences, but they end up having very different EVI and MAT as well
-  data.plot <- preds.sr.city
+  data.plot <- data.plot.sr.city
   plot.sr <- ggplot() +
     theme_bw() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = AGE), 
@@ -1168,7 +1302,7 @@
           legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
     ) 
   
-  data.plot <- preds.sd.city
+  data.plot <- data.plot.sd.city
   plot.sd <- ggplot() +
     theme_bw() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = AGE), 

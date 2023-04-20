@@ -10,7 +10,9 @@
   set.seed(4321)
 
   # Set working directory
-  setwd("YourFilePathHere")
+  #setwd("YourFilePathHere")
+  # e.g.,
+  setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
 
   # Load necessary packages
   library(jagsUI)   # for fitting models in JAGS
@@ -32,32 +34,40 @@ str(w)       # indicator variable for regional species pools
 
 
 # Summary model parameters
-n_region             # number of regions (i.e., cities)
-M                    # total number of species found across all regions (no data augmentation in our analysis)
-n_spp_aug            # number of all-zero species (for if data augmentation is desired)
-n_spp_tot            # number of species with a detection (not data augmented)
-n_species            # number of species observed in each region (naive regional species richness)
-n_sites              # number of sites surveyed in each region
+  n_region             # number of regions (i.e., cities)
+  M                    # total number of species found across all regions (no data augmentation in our analysis)
+  n_spp_aug            # number of all-zero species (for if data augmentation is desired)
+  n_spp_tot            # number of species with a detection (not data augmented)
+  n_species            # number of species observed in each region (naive regional species richness)
+  n_sites              # number of sites surveyed in each region
 
 
 # Site- and Region-Level Data
-#str(data_reg)       # region data
-#str(data_site)      # site data
-#str(data_site_reg)  # site data merged with region data
-regions              # names of each metropolitan region
+  #str(data_reg)       # region data
+  #str(data_site)      # site data
+  #str(data_site_reg)  # site data merged with region data
+  regions              # names of each metropolitan region
 
 
 # Within-region Site Covariates
-# Site covariates have been standardized and indexed by region
-str(impervious) # percent impervious surfacce within 1000 m
-str(hetero)     # natural patch density within 1000 m
-str(cropland)   # agricultural land cover within 1000 m
+  # Site covariates have been standardized and indexed by region
+  str(impervious) # percent impervious surfacce within 1000 m
+  str(hetero)     # natural patch density within 1000 m
+  str(cropland)   # agricultural land cover within 1000 m
 
 
 # Species Data (from the EltonTraits database)
-#str(data_spp)     # species data, indicating known species presence in each region
-#str(elton)        # species trait data from the EltonTraits database
-species           # names of species detected and included in analysis
+  #str(data_spp)     # species data, indicating known species presence in each region
+  #str(elton)        # species trait data from the EltonTraits database
+  species           # names of species detected and included in analysis
+  # check the collinearity between species traits
+  cor(elton$BodyMass.Value, pantheria$X22.2_HomeRange_Indiv_km2, use = "complete", method = "pearson")  # body mass and home range size
+  cor(elton$BodyMass.Value, pantheria$X22.2_HomeRange_Indiv_km2, use = "complete", method = "spearman")
+  cor(elton$logmass, pantheria$X22.2_HomeRange_Indiv_km2, use = "complete", method = "pearson")
+  cor(elton$logmass, pantheria$X22.2_HomeRange_Indiv_km2, use = "complete", method = "spearman")
+  cor(elton$logmass, elton$carn, use = "complete", method = "pearson") # body mass and carnivory
+  cor(elton$logmass, elton$carn, use = "complete", method = "spearman")
+  
 
 
 

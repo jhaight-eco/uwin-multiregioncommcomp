@@ -48,7 +48,6 @@
   nsamp <- length(tmp[[1]])
 
   
-
 # Figure 2: Urbanization vs. Occupancy for Contrasting Cities ----
       cities <- data.reg$city
       
@@ -67,8 +66,6 @@
                             tmp$mu.beta11.s1r
       )
      
-      
-      r <- 2
       
       data.reg <- data.reg %>% arrange(city)
       
@@ -104,10 +101,17 @@
           urban.pred <- seq(min(data.site$imperv_std), max(data.site$imperv_std), length.out = npred)
           pd.pred <- seq(min(data.site$pd_undev_std), max(data.site$pd_undev_std), length.out = npred)
           ag.pred <- seq(min(data.site$cropland_std), max(data.site$cropland_std), length.out = npred)
-          pred.EVI <- seq(min(data.reg$EVI_av_std), max(data.reg$EVI_av_std), length.out = nline)
-          pred.MAT <- seq(min(data.reg$mat_av_std), max(data.reg$mat_av_std), length.out = nline)
-          pred.URB <- seq(min(data.reg$urb_reg_std), max(data.reg$urb_reg_std), length.out = nline)
-          pred.AGE <- seq(min(data.reg$yrs_col_std), max(data.reg$yrs_col_std), length.out = nline)
+          # predicting across moderate ranges of regional variables (excluding unrealistic combinations of greenness and temperature)
+          data.reg %>% select(city, EVI_av, mat_av, urb_reg, yrs_col)
+          pred.EVI <- seq((0.2-mean(data.reg$EVI_av))/sd(data.reg$EVI_av), (0.29-mean(data.reg$EVI_av))/sd(data.reg$EVI_av), length.out = nline)
+          pred.MAT <- seq((10-mean(data.reg$mat_av))/sd(data.reg$mat_av), (15-mean(data.reg$mat_av))/sd(data.reg$mat_av), length.out = nline) # from 10 to 15 degrees
+          pred.URB <- seq((0.4-mean(data.reg$urb_reg))/sd(data.reg$urb_reg), (0.8-mean(data.reg$urb_reg))/sd(data.reg$urb_reg), length.out = nline)
+          pred.AGE <- seq((150-mean(data.reg$yrs_col))/sd(data.reg$yrs_col), (250-mean(data.reg$yrs_col))/sd(data.reg$yrs_col), length.out = nline)
+          # predicting across ranges that includes the extreme values (not as realistic)
+          #pred.EVI <- seq(min(data.reg$EVI_av_std), max(data.reg$EVI_av_std), length.out = nline)
+          #pred.MAT <- seq(min(data.reg$mat_av_std), max(data.reg$mat_av_std), length.out = nline)
+          #pred.URB <- seq(min(data.reg$urb_reg_std), max(data.reg$urb_reg_std), length.out = nline)
+          #pred.AGE <- seq(min(data.reg$yrs_col_std), max(data.reg$yrs_col_std), length.out = nline)
           
           # objects for storing prediction summary stats
           preds.psicomm.mean <- rep(NA, npred*nline)
@@ -307,7 +311,7 @@
         scale_fill_distiller(palette = "BrBG", direction = 1)+
         scale_color_distiller(palette = "BrBG", direction = 1)+
         scale_y_continuous(labels = label_number(accuracy = 0.01)) +
-        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.7))+
+        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy") +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
               axis.text.y = element_text(face = "bold", size = 14), 
@@ -338,7 +342,7 @@
         scale_fill_distiller(palette = "RdYlBu", direction = -1)+
         scale_color_distiller(palette = "RdYlBu", direction = -1)+
         scale_y_continuous(labels = label_number(accuracy = 0.01)) +
-        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.7))+
+        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
               axis.text.y = element_text(face = "bold", size = 14), 
@@ -371,7 +375,7 @@
         scale_fill_distiller(palette = "PuOr", direction = 1)+
         scale_color_distiller(palette = "PuOr", direction = 1)+
         scale_y_continuous(labels = label_number(accuracy = 0.01)) +
-        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.7))+
+        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
               axis.text.y = element_text(face = "bold", size = 14), 
@@ -402,7 +406,7 @@
         scale_fill_distiller(palette = "PRGn", direction = -1)+
         scale_color_distiller(palette = "PRGn", direction = -1)+
         scale_y_continuous(labels = label_number(accuracy = 0.01)) +
-        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.7))+
+        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
               axis.text.y = element_text(face = "bold", size = 14), 
@@ -412,6 +416,7 @@
               legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt") 
         )
       plot.age
+      range(data.plot$AGE)
       
       ggsave("./figures/figure2d_urbanization_vs_occupancy_AGEcontrast.png",
              plot.age,
@@ -421,8 +426,8 @@
              dpi = 300)
 
       
-# Figure 3 and Extended Data Figure: Species Traits vs. Occupancy and Urbanization-Occupancy Relationship ----
-      ###### Predict community-level occupancy vs. traits ====
+# Figure 3 and Extended Data Figure: Species Traits ----
+      ##### Extended Data Figure: community-level occupancy vs. traits ====
       #Design matrices of covariate values to predict off of
       # sequences of hypothetical species trait values
       seq.bm <- seq(min(data.spp$logmass.std), max(data.spp$logmass.std), length.out = npred) 
@@ -542,7 +547,7 @@
       
       
       
-      ###### Predict community-level occupancy-urbanization relationship vs traits ######
+      ##### Figure 3: community-level occupancy-urbanization relationship vs traits ====
       
       # sequences of hypothetical trait values to predict off of
       seq.bm <- seq(min(data.spp$logmass.std), max(data.spp$logmass.std), length.out = npred) 
@@ -889,3 +894,253 @@
              height = 4,
              units = "in",
              dpi = 300)
+
+      
+# Magnitude of Relationships with Within-City Covariates ----
+      # In writing the results, it may be helpful to be able to make statements about the 
+      # magnitude of the covariate effects, but written in real terms
+      # e.g. the global-mean effect of urbanization on occupancy = -0.403
+      mean(tmp$mu.beta1.s1)
+      # this is the negativity of the relationship when all other variables are held at their mean (zero)
+      # what does that mean in terms of impervious surface?
+      # what then, is the difference in occupancy at 0% impervious surface vs. 10% vs. 50%
+      data.plot[1,]
+      data.plot[24,]
+      data.plot[114,]
+      data.plot[200,]
+      data.plot$psi.urb[1]
+      data.plot$psi.urb[24]
+      data.plot$psi.urb[114]
+      data.plot$psi.urb[200]
+      #
+      (data.plot$psi.urb[24] - data.plot$psi.urb[1])/data.plot$psi.urb[1]*100 # an 18.8% reduction in occupancy
+      (data.plot$psi.urb[114] - data.plot$psi.urb[1])/data.plot$psi.urb[1]*100 # an 65.2% reduction in occupancy
+      (data.plot$psi.urb[200] - data.plot$psi.urb[1])/data.plot$psi.urb[1]*100
+      
+      # How about patch density?
+      mean(tmp$mu.beta2.s2)
+      median(tmp$mu.beta2.s2)
+      data.plot[1,]
+      data.plot[200,]
+      (data.plot$psi.pd[200] - data.plot$psi.pd[1])/data.plot$psi.pd[1]*100  # 77.4% increase in occupancy
+      
+      # How about agricultural footprint?
+      mean(tmp$mu.beta3.s3)
+      data.plot[1,]
+      data.plot[200,]
+      (data.plot$psi.ag[200] - data.plot$psi.ag[1])/data.plot$psi.ag[1]*100  # 54.2% reduction in occupancy
+ 
+      
+# Magnitude of Relationships within Contrasting Cities ----
+      # We also want to be able to make statements about trends within different cities
+      # For instance, to back up statements such as
+      # "Species occupancy and diversity were most negatively related to urbanization in the warmest, least vegetated cities"
+      # it may helpful to be able to say that the effect of urbanization was XX times greater in the least vegetated city (Phoenix) than in one of the greenest city with comparable temperature (Sanford)
+      
+      # For this, it may be helpful to predict across across ranges of actual values for each city
+      nline <- length(cities)  # one line for each city
+      npred <- 200               # in this case, we can predict across fewer values, for simplicity sace
+      impervious <- rep(NA, npred*nline)
+      urb.pred <- rep(NA, npred*nline)
+      pd.pred <- rep(NA, npred*nline)
+      ag.pred <- rep(NA, npred*nline)
+      
+      # Use standardized covariate values from each city
+      for(i in 1:nline){
+        city.select <- cities[i]
+        r <- data.site %>%
+          filter(city == city.select)
+        impervious[(i*npred-npred+1):(i*npred)] <- seq(min(r$Impervious), max(r$Impervious), length.out = npred)
+        urb.pred[(i*npred-npred+1):(i*npred)] <- seq(min(r$imperv_std), max(r$imperv_std), length.out = npred)
+        pd.pred[(i*npred-npred+1):(i*npred)] <- rep(median(r$pd_undev_std), length.out = npred)
+        ag.pred[(i*npred-npred+1):(i*npred)] <- rep(median(r$cropland_std), length.out = npred)
+      }
+      
+      # a design matrix of the standardized covariate values
+      dm.city.real <- cbind(
+        1,# intercept
+        urb.pred, #urban
+        # to use real values of patch density and agriculture
+        #pd.pred, # pd_undev
+        #ag.pred, # cropland
+        # to hold patch density and agriculture constant at their mean
+        0,
+        0,
+        rep(data.reg$EVI_av_std, each = npred), # EVI
+        urb.pred*rep(data.reg$EVI_av_std, each = npred),  #urb*EVI
+        rep(data.reg$mat_av_std, each = npred), #mat,
+        urb.pred*rep(data.reg$mat_av_std, each = npred), # urb*mat,
+        rep(data.reg$urb_reg_std, each = npred), # URB,
+        urb.pred*rep(data.reg$urb_reg_std, each = npred), # urb*URB
+        rep(data.reg$yrs_col_std, each = npred), # AGE,
+        urb.pred*rep(data.reg$yrs_col_std, each = npred) # urb*AGE
+      )
+      
+      
+      preds.psicomm.city <- plogis(mcmc.mu.beta %*% t(dm.city.real))  # predict
+      
+      preds.psicomm.cri <- apply(preds.psicomm.city, 2, quantile, probs = c(0.025,0.5,0.975)) %>% t() %>% data.frame()
+      
+      preds.psicomm.mean <- apply(preds.psicomm.city, c(2), function(x)   mean(x, na.rm=TRUE))    # posterior mean
+      
+      
+      data.plot.psi.city <- data.frame(
+        "city" = rep(data.reg$city, each = npred),
+        "EVI" = rep(data.reg$EVI_av, each = npred),
+        "MAT" = rep(data.reg$mat_av, each = npred),
+        "URB" = rep(data.reg$urb_reg, each = npred),
+        "AGE" = rep(data.reg$yrs_col, each = npred),
+        "impervious" = impervious,
+        "mean" = preds.psicomm.mean,
+        "lower95" = preds.psicomm.cri[,1],
+        "median" = preds.psicomm.cri[,2],
+        "upper95" = preds.psicomm.cri[,3]
+      )
+      
+      
+      # now that values have been predicted, let's compare the trends (see plots for these in the 'Spare Code' below)
+      # we can do this simply by comparing the slope between the predicted values at minimum and maximum levels of impervious surface
+      
+      
+      # First, compare two cities with similar temperatures
+      # one with lower EVI (Fort Collins), one with higher EVI (Tacoma)
+      t <- data.plot.psi.city %>% filter(city %in% c("tawa")) %>% select(impervious, median)
+      (slope1 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1])) # rise over run
+      t <- data.plot.psi.city %>% filter(city %in% c("foco")) %>% select(impervious, median)
+      (slope2 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))
+      slope1/slope2
+      
+      # Temperature
+      # compare the higher EVI city from before (Tacoma) to a warmer city with similarly EVI (St. Louis)
+      # St. Louis is only a few degrees warmer, but that's the biggest temperature difference possible without a bigger EVI difference
+      t <- data.plot.psi.city %>% filter(city %in% c("tawa")) %>% select(impervious, median)
+      (slope1 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))
+      t <- data.plot.psi.city %>% filter(city %in% c("slmo")) %>% select(impervious, median)
+      (slope2 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))
+      slope1/slope2
+      
+      # while we're at it, predict the community-average occupancy intercepts for each city (as 'city' was a random effect at the species-level)
+      dm.city.int <- cbind(
+        1,# intercept
+        0, #urban
+        # to use real values of patch density and agriculture
+        #pd.pred, # pd_undev
+        #ag.pred, # cropland
+        # to hold patch density and agriculture constant at their mean
+        0,
+        0,
+        data.reg$EVI_av_std, # EVI
+        0,  #urb*EVI
+        
+        data.reg$mat_av_std, #mat,
+        0, # urb*mat,
+        data.reg$urb_reg_std, # URB,
+        0, # urb*URB
+        data.reg$yrs_col_std, # AGE,
+        0 # urb*AGE
+      )
+      
+      preds.psicomm.city <- plogis(mcmc.mu.beta %*% t(dm.city.int))
+        
+      (psi.city.int <- data.frame(
+        "city" = data.reg$city,
+        "EVI" = data.reg$EVI_av,
+        "MAT" = data.reg$mat_av,
+        "URB" = data.reg$urb_reg,
+        "AGE" = data.reg$yrs_col,
+        round((apply(preds.psicomm.city, 2, quantile, probs = c(0.025,0.5,0.975)) %>% t() %>% data.frame()), 3)
+      ))
+      colnames(psi.city.int)[6:8] <- c("lower95", "median", "upper95")
+      
+      ggplot(data = psi.city.int, aes(x = EVI, y = median, ymin = lower95, ymax = upper95)) +
+        theme_bw() +
+        geom_errorbar(col = "gray20", lwd = 1.3) +
+        geom_errorbar(aes(col = EVI), lwd = 1.2)+
+        geom_point(size = 3)
+      
+      ggplot(data = psi.city.int, aes(x = MAT, y = median, ymin = lower95, ymax = upper95)) +
+        theme_bw() +
+        geom_errorbar(col = "gray20", lwd = 1.3) +
+        geom_errorbar(aes(col = MAT), lwd = 1.2)+
+        geom_point(size = 3)
+      
+      ggplot(data = psi.city.int, aes(x = URB, y = median, ymin = lower95, ymax = upper95)) +
+        theme_bw() +
+        geom_errorbar(col = "gray20", lwd = 1.3) +
+        geom_errorbar(aes(col = URB), lwd = 1.2)+
+        geom_point(size = 3)
+      
+      ggplot(data = psi.city.int, aes(x = AGE, y = median, ymin = lower95, ymax = upper95)) +
+        theme_bw() +
+        geom_errorbar(col = "gray20", lwd = 1.3) +
+        geom_errorbar(aes(col = AGE), lwd = 1.2)+
+        geom_point(size = 3)
+      
+# Spare Code ----
+      #### Plot the contrasting cities ====
+      data.plot <- data.plot.psi.city
+      
+      #### EVI
+      ggplot() +
+        theme_bw() + 
+        geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = EVI), 
+                    se = FALSE) +
+        geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = EVI), 
+                    alpha = 0.15) + 
+        gghighlight(city %in% c("tawa", "foco"))+
+        scale_fill_distiller(palette = "BrBG", direction = 1)+
+        scale_color_distiller(palette = "BrBG", direction = 1)+
+        scale_y_continuous(labels = label_number(accuracy = 0.1)) +
+        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
+        labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
+        theme(axis.text.x = element_text(face = "bold", size = 14), 
+              axis.text.y = element_text(face = "bold", size = 14), 
+              axis.title.x = element_text(face = "bold", size = 18), 
+              axis.title.y = element_text(face = "bold", size = 18),
+              legend.position = "none",
+              legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
+        ) 
+      
+      #### Temperature
+      ggplot() +
+        theme_bw() + 
+        geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = MAT), 
+                    alpha = 0.3) + 
+        geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = MAT), 
+                    se = FALSE) +
+        gghighlight(city %in% c("tawa", "slmo"))+
+        scale_fill_distiller(palette = "RdYlBu", direction = -1)+
+        scale_color_distiller(palette = "RdYlBu", direction = -1)+
+        scale_y_continuous(labels = label_number(accuracy = 0.1)) +
+        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
+        labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
+        theme(axis.text.x = element_text(face = "bold", size = 14), 
+              axis.text.y = element_text(face = "bold", size = 14), 
+              axis.title.x = element_text(face = "bold", size = 18), 
+              axis.title.y = element_text(face = "bold", size = 18),
+              legend.position = "none",
+              legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
+        ) 
+      
+      
+      #### Regional Urbanization
+      ggplot() +
+        theme_bw() + 
+        geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = URB), 
+                    alpha = 0.3) + 
+        geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = URB), 
+                    se = FALSE) +
+        gghighlight(city %in% c("scut", "chil"))+
+        scale_fill_distiller(palette = "PuOr", direction = 1)+
+        scale_color_distiller(palette = "PuOr", direction = 1)+
+        scale_y_continuous(labels = label_number(accuracy = 0.1)) +
+        coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
+        labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
+        theme(axis.text.x = element_text(face = "bold", size = 14), 
+              axis.text.y = element_text(face = "bold", size = 14), 
+              axis.title.x = element_text(face = "bold", size = 18), 
+              axis.title.y = element_text(face = "bold", size = 18),
+              legend.position = "none",
+              legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
+        ) 
+      
