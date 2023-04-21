@@ -10,7 +10,9 @@
   set.seed(123)
 
 # Set working directory
-  setwd("YourFilePathHere")
+  #setwd("YourFilePathHere")
+  # e.g.,
+  setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
 
 # Load necessary packages
   library(dplyr)    # for working with data
