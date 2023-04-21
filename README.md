@@ -14,14 +14,17 @@ Haight, J. D.,; S. J. Hall; M. Fidino; S. A. Adalsteinsson; A. A. Ahlers; J. Ang
 ---
 <div align="center"> <h3>data</h3> </div>
 
-This contains three subfolders with all the data files used for conducting the analyses and producing the `figures`
+This contains three subfolders with all the data files used for conducting the analyses and producing the `figures`:  
+`modelinput`  
+`modeloutput`  
+`modelsummary`  
 
+Within `modelinpput`, there are two files:  
+**./data/modelinput/ModelInputData_UWIN_allspecies.csv**  
+Contains data of species level attributes  
 
-**./data/modelinput/ModelInputData_UWIN_allspecies.csv**
-
-
-**./data/modelinput/ModelInputData_UWIN_MRCM.RData**
-Contains all the cleaned datasets necessary for fitting the Bayesian multi-city community occupancy model, including the following R objects:
+**./data/modelinput/ModelInputData_UWIN_MRCM.RData**  
+Contains all the cleaned datasets necessary for fitting the Bayesian multi-city community occupancy model, including the following R objects:  
 
 | Object Name	| Description   |
 |---------------------------|--------|
@@ -34,9 +37,10 @@ Contains all the cleaned datasets necessary for fitting the Bayesian multi-city 
 | n_region		| The number of regions (i.e., cities)	|
 | n_species		| The number of species observed in each region (i.e., naive regional species richness)	|
 | M			| The overall number of species detected across all cities, equal to the sum of all uniquely identifiable species. No non-detected species (augmented data) were included in our analysis) |
-| impervious	| A matrix of values of the covariate `local urbanization` (percent impervious surface cover), grouped by city and standardized around each city's mean |
-| hetero     	| A matrix of values of the covariate `local urbanization` (percent impervious surface cover), grouped by city and standardized around each city's mean |
-| cropland		| A matrix of values of the covariate `local urbanization` (percent impervious surface cover), grouped by city and standardized around each city's mean |
+| impervious	| A matrix of values of the covariate `local urbanization` (mean percent impervious surface cover), grouped by city and standardized around each city's mean |
+| hetero     	| A matrix of values of the covariate `local patch density` (density of non-urban, non-agricultural land cover patches), grouped by city and standardized around each city's mean |
+| cropland		| A matrix of values of the covariate `local urbanization` (proportional coverage of agricultural land cover patches), grouped by city and standardized around each city's mean |
+| data_reg		| A dataframe containing city-level attributes, including the standardized among-city covariates `regional greenness` (EVI_av_std), `regional temperature` (mat_av_std), `regional urbanization` (urb_reg_std), and `regional city age` (yrs_col_std) |
 | elton		| A dataframe of traits for the 37 study species, derived from the EltonTraits database (Wilman et al. 2016)	|
 | pantheria		| A dataframe of traits for the 37 study species, derived from the PanTHERIA database (Jones et al. 2009)		|
 
@@ -55,7 +59,7 @@ This contains the component figures produced using the R scripts below, which we
 ---
 <div align="center"> <h3>Rcode</h3> </div>
 
-This file contains all R script files used for conducting the analyses and producing the `figures`. There are a total of eight R scripts, numbered by the order in which they are to be run. Scripts 1_1 through 1_3 are for conducting the analyses, while 2_1 through 2_3 are for producing the figures components.
+This folder contains all R script files used for conducting the analyses and producing the `figures`. There are a total of eight R scripts, numbered by the order in which they are to be run. Scripts 1_1 through 1_3 are for conducting the analyses, while 2_1 through 2_3 are for producing the figures components.
 
 **./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R**  
 Script for using JAGS to fit the Bayesian multi-city, community occupancy model within R, using the R package `jagsUI`  
