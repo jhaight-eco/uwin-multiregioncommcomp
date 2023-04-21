@@ -2,7 +2,7 @@
 
 A repository that contains code and data associated with the submitted manuscript "Urbanization, climate, and species traits shape mammal communities from local to continental scales" (In Review)
 
-This `README` file
+This `README` file includes information on the various scripts and datasets used for this analysis, though not every data source is saved in this repository (e.g., Bayesian multi-city, community occupancy model output; GIS data). The manuscript includes citation of all locations from which spatially-linked within-city and among-city covariates were derived.
 
 Please direct all questions to Jeffrey Haight jdhaight.eco(at)gmail.com
 
@@ -19,7 +19,7 @@ This contains three subfolders with all the data files used for conducting the a
 `modeloutput`  
 `modelsummary`  
 
-Within `modelinpput`, there are two files:  
+Within `modelinput`, there are two files:  
 **./data/modelinput/ModelInputData_UWIN_allspecies.csv**  
 Contains data of species level attributes  
 
