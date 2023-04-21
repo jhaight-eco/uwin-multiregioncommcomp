@@ -45,8 +45,9 @@ Contains all the cleaned datasets necessary for fitting the Bayesian multi-city 
 | pantheria		| A dataframe of traits for the 37 study species, derived from the PanTHERIA database (Jones et al. 2009)		|
 
 Additional explanation of each R object is provided as comments within the script for fitting the model (./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R)  
-
-
+  
+  
+  
 Within `modeloutput`, there are two files:  
 **model2output_logglm_hill0_sample60k**  
 
@@ -55,8 +56,9 @@ Within `modeloutput`, there are two files:
 
 
 Note that the model output file **model1output_mrcm_globalinteractionmodel_sample60k.rds** is not included in this repository, as the file is too large. This file can be replicated by fitting the Bayesian multi-city community occupancy model code using the R script **./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R**.  
-
-
+  
+  
+  
 Within `modelsummary`, there are five files:  
 
 **data_sites_mrcmsummary.csv**  
