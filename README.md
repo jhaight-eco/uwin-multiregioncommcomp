@@ -44,7 +44,13 @@ Contains all the cleaned datasets necessary for fitting the Bayesian multi-city 
 | elton		| A dataframe of traits for the 37 study species, derived from the EltonTraits database (Wilman et al. 2016)	|
 | pantheria		| A dataframe of traits for the 37 study species, derived from the PanTHERIA database (Jones et al. 2009)		|
 
-Additional explanation of each R object is provided as comments within the script for fitting the model (./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R)
+Additional explanation of each R object is provided as comments within the script for fitting the model (./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R)  
+
+
+Within 'modeloutput':  
+
+
+Within 'modelsummary':  
 
 ---
 
