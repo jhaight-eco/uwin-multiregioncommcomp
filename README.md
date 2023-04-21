@@ -14,43 +14,71 @@ Haight, J. D.,; S. J. Hall; M. Fidino; S. A. Adalsteinsson; A. A. Ahlers; J. Ang
 ---
 <div align="center"> <h3>data</h3> </div>
 
+This contains three subfolders with all the data files used for conducting the analyses and producing the `figures`
+
+
+**./data/modelinput/ModelInputData_UWIN_allspecies.csv**
+
+
+**./data/modelinput/ModelInputData_UWIN_MRCM.RData**
+Contains all the cleaned datasets necessary for fitting the Bayesian multi-city community occupancy model, including the following R objects:
+
+| Object Name	| Description   |
+|---------------------------|--------|
+| ysum		| An array of by-day detections of each species with the dimensions of `species X maximum number of sites X city`	|
+| yaug		| An array of by-day detections with the dimensions of `species X maximum number of sites X city`, including additional all-zero species for data augmentation. Since no data augmented species were included in final analysis, this is identical to ysum	|
+| Z			| Naive species occurence matrix (1 = observed; 2 = not observed)	|
+| w			| A matrix incicating membership of each species within each city's regional species pool.  |
+| K_tot         	| A matrix including the number of repeat surveys at each site within each region (1 = species is  known to occur within the city and was detected during survey period; 0 = species is not known to occur within the city; NA = species is known to occur within the city, but was not detected during the survey period)	|
+| n_sites		| A vector with the number of sites surveyed in each city	|
+| n_region		| The number of regions (i.e., cities)	|
+| n_species		| The number of species observed in each region (i.e., naive regional species richness)	|
+| M			| The overall number of species detected across all cities, equal to the sum of all uniquely identifiable species. No non-detected species (augmented data) were included in our analysis) |
+| impervious	| A matrix of values of the covariate `local urbanization` (percent impervious surface cover), grouped by city and standardized around each city's mean |
+| hetero     	| A matrix of values of the covariate `local urbanization` (percent impervious surface cover), grouped by city and standardized around each city's mean |
+| cropland		| A matrix of values of the covariate `local urbanization` (percent impervious surface cover), grouped by city and standardized around each city's mean |
+| elton		| A dataframe of traits for the 37 study species, derived from the EltonTraits database (Wilman et al. 2016)	|
+| pantheria		| A dataframe of traits for the 37 study species, derived from the PanTHERIA database (Jones et al. 2009)		|
+
+Additional explanation of each R object is provided as comments within the script for fitting the model (./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R)
+
 ---
 
 
 ---
 <div align="center"> <h3>figures</h3> </div>
----
+
 This contains the component figures produced using the R scripts below, which were combined to create the figures in the published. 
 
 
-
 ---
-<div align="center"> <h3>R</h3> </div>
 ---
-This file contains all R code used for conducting the analyses and producing the figures. There are a total of eight R scripts, numbered by the order in which they are to be run. Scripts 1_1 through 1_3 are for conducting the analyses, while 2_1 through 2_3 are for producing the figures components.
+<div align="center"> <h3>Rcode</h3> </div>
 
-`1_1_Analysis_FittingMultiRegionCommunityModel.R`
-The code for fitting the Bayesian multi-city, community occupancy model with JAGS, using the R package `jagsUI`
+This file contains all R script files used for conducting the analyses and producing the `figures`. There are a total of eight R scripts, numbered by the order in which they are to be run. Scripts 1_1 through 1_3 are for conducting the analyses, while 2_1 through 2_3 are for producing the figures components.
 
-`1_1_jagsmodel_mrcm_site3_reg4_spp2_det0_regint4.R`
+**./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R**
+The script for using JAGS to fit the Bayesian multi-city, community occupancy model within R, using the R package `jagsUI`
+
+**./Rcode/1_1_jagsmodel_mrcm_site3_reg4_spp2_det0_regint4.R**
 The Bayesian multi-city, community occupancy model that we fit to the data
 
-`1_2_Analysis_CommunityCompositionEstimation.R`
+**./Rcode/1_2_Analysis_CommunityCompositionEstimation.R**
 
 
-`1_3_Analysis_FittingMetaanalysisModel.R`
+**./Rcode/1_3_Analysis_FittingMetaanalysisModel.R**
 
 
-`1_3_jagsmodel_alpha.R`
+**./Rcode/1_3_jagsmodel_alpha.R**
 
 
-`2_1_Visualization_WithinCityOccupancy.R`
+**./Rcode/2_1_Visualization_WithinCityOccupancy.R**
 
 
-`2_2_Visualization_WithinCityCommComp.R`
+**./Rcode/2_2_Visualization_WithinCityCommComp.R**
 
 
-`2_3_Visualization_AmongCityRichness.R`
+**./Rcode/2_3_Visualization_AmongCityRichness.R**
 
 
 
