@@ -57,29 +57,29 @@ This contains the component figures produced using the R scripts below, which we
 
 This file contains all R script files used for conducting the analyses and producing the `figures`. There are a total of eight R scripts, numbered by the order in which they are to be run. Scripts 1_1 through 1_3 are for conducting the analyses, while 2_1 through 2_3 are for producing the figures components.
 
-**./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R**
-The script for using JAGS to fit the Bayesian multi-city, community occupancy model within R, using the R package `jagsUI`
+**./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R**  
+Script for using JAGS to fit the Bayesian multi-city, community occupancy model within R, using the R package `jagsUI`  
 
-**./Rcode/1_1_jagsmodel_mrcm_site3_reg4_spp2_det0_regint4.R**
-The Bayesian multi-city, community occupancy model that we fit to the data
+**./Rcode/1_1_jagsmodel_mrcm_site3_reg4_spp2_det0_regint4.R**  
+The Bayesian multi-city, community occupancy model that we fit to the species occurrence data  
 
-**./Rcode/1_2_Analysis_CommunityCompositionEstimation.R**
+**./Rcode/1_2_Analysis_CommunityCompositionEstimation.R**  
+Script for extracting posterior estimates of species presence from the multi-city community occupancy model and producing posterior estimates of community composition (species richness and diversity)  
 
+**./Rcode/1_3_Analysis_FittingMetaanalysisModel.R**  
+Script for using JAGS to fit the Bayesian log-normal model meta-analysis of community compostion (species richness and diversity) within R, using the R package `jagsUI`  
 
-**./Rcode/1_3_Analysis_FittingMetaanalysisModel.R**
+**./Rcode/1_3_jagsmodel_alpha.R**  
+The log-normal model used for the Bayesian meta-analysis of community compostion estimates  
 
+**./Rcode/2_1_Visualization_WithinCityOccupancy.R**  
+Script for creating figures visualizing within-city relationships between community-average occupancy and th variables of local urbanization, local patch density, local agricultural footprint, as well as among-city variation in within-city composition-urbanization relationships  
 
-**./Rcode/1_3_jagsmodel_alpha.R**
+**./Rcode/2_2_Visualization_WithinCityCommComp.R**  
+Script for creating figures visualizing within-city relationships between local community composition (species richness and diversity) and the variables of local urbanization, local patch density, local agricultural footprint, as well as correlations between each pair of local variables and among-city variation in within-city composition-urbanization relationships  
 
-
-**./Rcode/2_1_Visualization_WithinCityOccupancy.R**
-
-
-**./Rcode/2_2_Visualization_WithinCityCommComp.R**
-
-
-**./Rcode/2_3_Visualization_AmongCityRichness.R**
-
+**./Rcode/2_3_Visualization_AmongCityRichness.R**  
+Script for creating figures visualizing relationships between among-city variation in regional species richness, as well as correlations between each pair of among-city variables  
 
 
 ---
