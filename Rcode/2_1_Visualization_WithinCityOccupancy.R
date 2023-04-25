@@ -35,7 +35,7 @@
   # object output from the 'jags()' function in the 'jagsUI' package
   # the original model file itself was unfortunately too large to upload to the data repository
   # this file can be reproduced by running the code in the '1_1_Analysis_FittingMultiRegionCommunityModel.R' script
-  out <- readRDS("C:/Research/urban/UWIN/analysis_MRCM/data/6_output/model1output_mrcm_globalinteractionmodel_sample60k.rds")
+  out <- readRDS("C:/Research/urban/UWIN/analysis_MRCM/data/6_output/test_yeareffect/model1output_mrcm_globalinteractionmodel_sample60k.rds")
   # out$summary
   
   # for plotting purposes, some parameters may need to be recalculated, depending on which were monitored in the original model
@@ -91,7 +91,7 @@
           #                        max(data.city$Impervious), length.out = npred) 
           #}
           
-          # However, to more effectively highlight the statistical effects modeld in the multi-city community occupancy model
+          # However, to more effectively highlight the statistical effects modeled in the multi-city community occupancy model
           # we will predict effects across a range of hypothetical local urbanization values, under contrasting ranges of regional variables
           # for each regional variable, we will hold all other regional and local variables constant at their mean (zero)
           #nline <- nrow(data.reg)    
@@ -385,6 +385,7 @@
               legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt") 
               )
       plot.urb
+      range(data.plot$URB)
       
       ggsave("./figures/figure2c_urbanization_vs_occupancy_URBcontrast.png",
              plot.urb,

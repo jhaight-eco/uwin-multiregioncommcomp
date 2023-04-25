@@ -39,7 +39,7 @@
   to_keep <- c(
     "rich_mean", "rich_sd",
     "hill1_mean", "hill1_sd",
-    "urban_std", "pd_undev_std",
+    "imperv_std", "pd_undev_std",
     "cropland_std", "EVI_av_std",
     "mat_av_std", "urb_reg_std",
     "yrs_col_std", "City"
@@ -50,17 +50,17 @@
   # make the design matrix for the analysis
   dm_alpha <- cbind(
     1,
-    data$urban_std,
+    data$imperv_std,
     data$pd_undev_std,
     data$cropland_std,
     data$EVI_av_std,
-    data$urban_std * data$EVI_av_std,
+    data$imperv_std * data$EVI_av_std,
     data$mat_av_std,
-    data$urban_std * data$mat_av_std,
+    data$imperv_std * data$mat_av_std,
     data$urb_reg_std,
-    data$urban_std * data$urb_reg_std,
+    data$imperv_std * data$urb_reg_std,
     data$yrs_col_std,
-    data$urban_std * data$yrs_col_std
+    data$imperv_std * data$yrs_col_std
   )
   # and give them useful names
   colnames(dm_alpha) <- c(
@@ -115,7 +115,7 @@
   
   # fit model in JAGS, using 'jagsUI'
   m.sr <- jags(
-    model.file = "./R/3_3_jagsmodel_alpha.R",
+    model.file = "./Rcode/3_3_jagsmodel_alpha.R",
     data = data_list_rich,
     n.chains = nc,
     parameters.to.save = c("beta", "re_sd"),
@@ -148,7 +148,7 @@
   # export the summary of all modeled parameters
   # these data are located in the second sheet of Supplementary Data 1 (supplementarydata1_summarytables_speciesinfo.xlsx),
   # alongside other model summaries
-  write.csv(m.sr.sum, "./data/modelsummary/model2summary_logglm_hill0_sample60k.csv")
+  #write.csv(m.sr.sum, "./data/modelsummary/model2summary_logglm_hill0_sample60k.csv")
   
   
 #### Fit Species Diversity Model ####
@@ -169,25 +169,11 @@
     city_tau = dgamma(1,1,1)
   )
   }
-  
-  # MCMC parameters
-  # for jagsUI, number of samples = ni - nb
-  nc <- 3      # number of chains
-  nt <- 3      # number to thin samples by
-  
-  # Exact settings used for the manuscript analysis
-  #na <- 10000   # number of adaptations
-  #nb <- 120000  # number of burn-ins
-  #ni <- 180000  # number of iterations
-  
-  # Settings with samples reduced by a factor of 100, for illustrative/testing purposes
-  na <- 100   # number of adaptations
-  nb <- 1200  # number of burn-ins
-  ni <- 1800  # number of iterations
+
   
   # fit model in JAGS
   m.sd <- jags(
-    model.file = "./R/3_3_jagsmodel_alpha.R",
+    model.file = "./Rcode/1_3_jagsmodel_alpha.R",
     data = data_list_hill,
     n.chains = nt,
     parameters.to.save = c("beta", "re_sd"),
@@ -221,3 +207,4 @@
   # these data are located in the third sheet of Supplementary Data 1 (supplementarydata1_summarytables_speciesinfo.xlsx),
   # alongside other model summaries
   write.csv(m.sd.sum, "./data/modelsummary/model3summary_logglm_hill1_sample60k.csv")
+  

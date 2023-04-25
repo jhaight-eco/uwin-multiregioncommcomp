@@ -47,6 +47,8 @@ str(w)       # indicator variable for regional species pools
   #str(data_site)      # site data
   #str(data_site_reg)  # site data merged with region data
   regions              # names of each metropolitan region
+  year_vec <- data_reg$survey_yr-(min(data_reg$survey_yr) - 1) # an integer vector of survey year (1 = the earliest year, 2016)
+  
 
 
 # Within-region Site Covariates
@@ -87,10 +89,10 @@ str(bugs.data <- list(M = M,
                       cov.r2 = data_reg$mat_av_std,   # cov.r2 = Mean annual temperature
                       cov.r3 = data_reg$urb_reg_std,   # cov.r3 = Urban land cover proportion
                       cov.r4 = data_reg$yrs_col_std,   # cov.r4 = City Age
-                      #cov.r5 = data_reg$pd_n_reg_std,    # cov.r5 = Fragmentation (Natural patch density)
                       cov.spp1 = elton$logmass.std,
                       cov.spp2 = elton$carn.std,
-                      cov.det1 = effort,
+                      #cov.det1 = effort,
+                      year_vec = year_vec,
                       Z = (yaug>0)*1, 
                       w = w))
 
@@ -145,7 +147,14 @@ inits <- function() { list(mu.omega=runif(1, 0, 1),
                            delta1.spp1 = runif(1, 0, 1),
                            delta2.spp1 = runif(1, -1, 0),
                            delta1.spp2 = runif(1, -1, 0),
-                           delta2.spp2 = runif(1, 0, 0.5)
+                           delta2.spp2 = runif(1, 0, 0.5),
+                           
+                           year = matrix(
+                             runif(bugs.data$M*5, -1, 1),
+                             nrow = bugs.data$M,
+                             ncol = 5
+                           ),
+                           tau.year = runif(1, 0.001, 1)
                            
                            
 )
@@ -176,6 +185,8 @@ parameters <- c("mu.omega","omega", "slope.omega1", "slope.omega2", "slope.omega
                 "mu.alpha0",
                 "beta0",
                 "alpha0",
+                "year",
+                "tau.year",
                 "N",
                 "mu.beta1.s1",
                 "mu.beta2.s2",
@@ -215,7 +226,7 @@ parameters <- c("mu.omega","omega", "slope.omega1", "slope.omega2", "slope.omega
 out.global <- jags(bugs.data, 
                    inits = inits, 
                    parameters.to.save = parameters, 
-                   model = "./R/1_1_jagsmodel_mrcm_site3_reg4_spp2_det0_regint4.R", 
+                   model = "./Rcode/1_1_jagsmodel_mrcm_site3_reg4_spp2_det0_regint4.R", 
                    n.adapt = na,
                    n.chains = nc, 
                    n.thin = nt, 
