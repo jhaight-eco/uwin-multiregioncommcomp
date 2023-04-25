@@ -96,15 +96,22 @@
     city_tau = dgamma(1,1,1)
   )
   }
+
+# MCMC settings
+  nc <-3       # number of MCMC chains
+  nt <- 3      # number to thin samples by
   
-  # MCMC parameters
-  # for jagsUI, number of samples = ni - nb
-  nc <- 3      # number of chains
-  nt <- 3      # number to samples thin by
-  # for illustrative purposes, the next three parameters are 1/10th of their value in the manuscript
+  # Exact settings used for the manuscript analysis
+  #na <- 10000   # number of adaptations
+  #nb <- 120000  # number of burn-ins
+  #ni <- 180000  # number of iterations
+  
+  # Settings with samples reduced by a factor of 100, for illustrative/testing purposes
+  # Approximate runtime (on a laptop with 12 GB of RAM): ~0.7 minutes
   na <- 100   # number of adaptations
   nb <- 1200  # number of burn-ins
   ni <- 1800  # number of iterations
+  
   
   # fit model in JAGS, using 'jagsUI'
   m.sr <- jags(

@@ -27,9 +27,9 @@
   # this file can be reproduced by running the code in the '1_1_Analysis_FittingMultiRegionCommunityModel.R' script
   out <- readRDS("./data/modeloutput/model1output_mrcm_globalinteractionmodel_sample60k.rds")  # this also takes up a notable amount of memory to input
   
-
   str(tmp <- out$sims.list)   # grab MCMC samples
   length(tmp[[1]])            # number of MCMC samples
+  rm(out); gc()               # remove the full model object, to free up some memory
   
   # Select a random subset of the posterior samples (make sure the seed is set above)
   # Due to computational limitations, not all 60,000 samples could be analyzed
@@ -184,7 +184,7 @@
   #saveRDS(hill2, "./data/modelsummary/model1output_hill2predicted_sample10k.rds")
   #saveRDS(pm_w, "./data/modelsummary/model1output_pm_w.rds")
   #saveRDS(RR, "./data/modelsummary/model1output_RRpredicted.rds")
-
+  #readRDS(SR, "./data/modelsummary/model1output_hill0predicted_sample10k.rds")
 
 #### Summarize Estimates ####
 # These summarized data will be added to the site covariate data, 

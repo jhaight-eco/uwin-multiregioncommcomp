@@ -310,7 +310,7 @@
         #gghighlight(city %in% c("safl", "phaz", "ioio"))+
         scale_fill_distiller(palette = "BrBG", direction = 1)+
         scale_color_distiller(palette = "BrBG", direction = 1)+
-        scale_y_continuous(labels = label_number(accuracy = 0.01)) +
+        scale_y_continuous(labels = label_number(accuracy = 0.1)) +
         coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy") +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
@@ -341,7 +341,7 @@
         theme_bw() + 
         scale_fill_distiller(palette = "RdYlBu", direction = -1)+
         scale_color_distiller(palette = "RdYlBu", direction = -1)+
-        scale_y_continuous(labels = label_number(accuracy = 0.01)) +
+        scale_y_continuous(labels = label_number(accuracy = 0.1)) +
         coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
@@ -374,7 +374,7 @@
         theme_bw() + 
         scale_fill_distiller(palette = "PuOr", direction = 1)+
         scale_color_distiller(palette = "PuOr", direction = 1)+
-        scale_y_continuous(labels = label_number(accuracy = 0.01)) +
+        scale_y_continuous(labels = label_number(accuracy = 0.1)) +
         coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
@@ -405,7 +405,7 @@
         #gghighlight(city %in% c("inin", "wide"))+ 
         scale_fill_distiller(palette = "PRGn", direction = -1)+
         scale_color_distiller(palette = "PRGn", direction = -1)+
-        scale_y_continuous(labels = label_number(accuracy = 0.01)) +
+        scale_y_continuous(labels = label_number(accuracy = 0.1)) +
         coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
         theme(axis.text.x = element_text(face = "bold", size = 14), 

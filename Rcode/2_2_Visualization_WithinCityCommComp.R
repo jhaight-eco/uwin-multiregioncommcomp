@@ -380,12 +380,12 @@
     theme_bw() + 
     geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city), se = FALSE, lwd = 1.2, color = "gray20") +
     geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city, color = EVI), se = FALSE) +
-    geom_ribbon(data = data.plot, aes(x = impervious, y = sr_med, group = city, ymin = sr_low95, ymax = sr_upp95, fill = EVI), alpha = 0.15) + 
+    geom_ribbon(data = data.plot, aes(x = impervious, y = sr_med, group = city, ymin = sr_low95, ymax = sr_upp95, fill = EVI), alpha = 0.075) + 
     #gghighlight(city %in% c("safl", "phaz"))+
     scale_fill_distiller(palette = "BrBG", direction = 1)+
     scale_color_distiller(palette = "BrBG", direction = 1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(2, 6.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Richness")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -404,12 +404,12 @@
     geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city, color = EVI), 
                 se = FALSE) +
     geom_ribbon(data = data.plot, aes(x = impervious, y = sd_med, group = city, ymin = sd_low95, ymax = sd_upp95, fill = EVI), 
-                alpha = 0.15) + 
+                alpha = 0.075) + 
     #gghighlight(city %in% c("safl", "phaz"))+
     scale_fill_distiller(palette = "BrBG", direction = 1)+
     scale_color_distiller(palette = "BrBG", direction = 1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Diversity")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -450,12 +450,12 @@
     geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city, color = MAT), 
                 se = FALSE) +
     geom_ribbon(data = data.plot, aes(x = impervious, y = sr_med, group = city, ymin = sr_low95, ymax = sr_upp95, fill = MAT), 
-                alpha = 0.15) + 
+                alpha = 0.075) + 
     #gghighlight(city %in% c("scut", "mela"))+
     scale_fill_distiller(palette = "RdYlBu", direction = -1)+
     scale_color_distiller(palette = "RdYlBu", direction = -1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(2, 6.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Richness")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -473,12 +473,12 @@
     geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city, color = MAT), 
                 se = FALSE) +
     geom_ribbon(data = data.plot, aes(x = impervious, y = sd_med, group = city, ymin = sd_low95, ymax = sd_upp95, fill = MAT), 
-                alpha = 0.15) + 
+                alpha = 0.075) + 
     #gghighlight(city %in% c("scut", "mela"))+
     scale_fill_distiller(palette = "RdYlBu", direction = -1)+
     scale_color_distiller(palette = "RdYlBu", direction = -1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Diversity")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -518,12 +518,12 @@
     geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city, color = URB), 
                 se = FALSE) +
     geom_ribbon(data = data.plot, aes(x = impervious, y = sr_med, group = city, ymin = sr_low95, ymax = sr_upp95, fill = URB), 
-                alpha = 0.15) + 
+                alpha = 0.075) + 
     #gghighlight(city %in% c("scut", "chil"))+
     scale_fill_distiller(palette = "PuOr", direction = 1)+
     scale_color_distiller(palette = "PuOr", direction = 1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(2, 6.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Richness")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -540,12 +540,12 @@
     geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city, color = URB), 
                 se = FALSE) +
     geom_ribbon(data = data.plot, aes(x = impervious, y = sd_med, group = city, ymin = sd_low95, ymax = sd_upp95, fill = URB), 
-                alpha = 0.15) + 
+                alpha = 0.075) + 
     #gghighlight(city %in% c("scut", "chil"))+
     scale_fill_distiller(palette = "PuOr", direction = 1)+
     scale_color_distiller(palette = "PuOr", direction = 1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Diversity")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -585,12 +585,12 @@
     geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city, color = AGE), 
                 se = FALSE) +
     geom_ribbon(data = data.plot, aes(x = impervious, y = sr_med, group = city, ymin = sr_low95, ymax = sr_upp95, fill = AGE), 
-                alpha = 0.15) + 
+                alpha = 0.075) + 
     #gghighlight(city %in% c("inin", "wide"))+ 
     scale_fill_distiller(palette = "PRGn", direction = -1)+
     scale_color_distiller(palette = "PRGn", direction = -1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(2, 6.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Richness")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -607,12 +607,12 @@
     geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city, color = AGE), 
                 se = FALSE) +
     geom_ribbon(data = data.plot, aes(x = impervious, y = sd_med, group = city, ymin = sd_low95, ymax = sd_upp95, fill = AGE), 
-                alpha = 0.15) + 
+                alpha = 0.075) + 
     #gghighlight(city %in% c("inin", "wide"))+
     scale_fill_distiller(palette = "PRGn", direction = -1)+
     scale_color_distiller(palette = "PRGn", direction = -1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Diversity")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -813,8 +813,8 @@
     geom_smooth(data = preds_sr_urb, aes(x = cov1, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[8])+
     theme_bw() + 
-    scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(0, 3, 6, 9, 12)) +
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0, 12))+
     labs(x = "Local Urbanization \n(% Impervious Surface)", y = "Species Richness")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -842,8 +842,8 @@
     geom_smooth(data = preds_sd_urb, aes(x = cov1, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[8])+
     theme_bw() + 
-    scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(2, 4, 6, 8, 10, 12)) +
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(3, 12))+
     labs(x = "Local Urbanization \n(% Impervious Surface)", y = "Species Diversity")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -874,8 +874,8 @@
     geom_smooth(data = preds_sr_pd, aes(x = cov1, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[5])+
     theme_bw() + 
-    scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$pd_undev)), ylim=c(0,11.5))+
+    scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(0, 3, 6, 9, 12)) +
+    coord_cartesian(xlim=c(0, max(data.site$pd_undev)), ylim=c(0, 12))+
     labs(x = "Local Patch Density \n(#/100 ha)", y = "Species Richness")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -905,8 +905,8 @@
     geom_smooth(data = preds_sd_pd, aes(x = cov1, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[5])+
     theme_bw() + 
-    scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$pd_undev)), ylim=c(0,11.5))+
+    scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(2, 4, 6, 8, 10, 12)) +
+    coord_cartesian(xlim=c(0, max(data.site$pd_undev)), ylim=c(3, 12))+
     labs(x = "Local Patch Density \n(#/100 ha)", y = "Species Diversity")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -936,8 +936,8 @@
     geom_smooth(data = preds_sr_ag, aes(x = cov1*100, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[9])+
     theme_bw() + 
-    scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$cropland*100)), ylim=c(0,11.5)) +
+    scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(0, 3, 6, 9, 12)) +
+    coord_cartesian(xlim=c(0, max(data.site$cropland*100)), ylim=c(0, 12)) +
     labs(x = "Local Agricultural Footprint \n(% Land Cover)", y = "Species Richness") +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -968,14 +968,23 @@
     geom_smooth(data = preds_sd_ag, aes(x = cov1*100, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[9])+
     theme_bw() + 
-    scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$cropland*100)), ylim=c(0,11.5)) +
+    scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(2, 4, 6, 8, 10, 12)) +
+    coord_cartesian(xlim=c(0, max(data.site$cropland*100)), ylim=c(3, 12)) +
     labs(x = "Local Agricultural Footprint \n(% Land Cover)", y = "Species Diversity") +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
           axis.title.x = element_text(face = "bold", size = 16), 
           axis.title.y = element_text(face = "bold", size = 16),
     )
+  plot2
+  
+  ggsave("./figures/extendeddata_figure1i_agriculture_vs_diversity.png",
+         plot2,
+         width = 4,
+         height = 4,
+         units = "in",
+         dpi = 300)
+  
 
 # Magnitude of Relationships with Within-City Covariates ----
   # In writing the results, it may be helpful to be able to make statements about the 
@@ -1143,7 +1152,7 @@
     scale_fill_distiller(palette = "BrBG", direction = 1)+
     scale_color_distiller(palette = "BrBG", direction = 1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Richness")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -1165,7 +1174,7 @@
     scale_fill_distiller(palette = "BrBG", direction = 1)+
     scale_color_distiller(palette = "BrBG", direction = 1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Diversity")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -1192,7 +1201,7 @@
     scale_fill_distiller(palette = "RdYlBu", direction = -1)+
     scale_color_distiller(palette = "RdYlBu", direction = -1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Richness")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -1214,7 +1223,7 @@
     scale_fill_distiller(palette = "RdYlBu", direction = -1)+
     scale_color_distiller(palette = "RdYlBu", direction = -1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Diversity")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -1242,7 +1251,7 @@
     scale_fill_distiller(palette = "PuOr", direction = 1)+
     scale_color_distiller(palette = "PuOr", direction = 1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Richness")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -1263,7 +1272,7 @@
     scale_fill_distiller(palette = "PuOr", direction = 1)+
     scale_color_distiller(palette = "PuOr", direction = 1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Diversity")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -1292,7 +1301,7 @@
     scale_fill_distiller(palette = "PRGn", direction = -1)+
     scale_color_distiller(palette = "PRGn", direction = -1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Richness")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
@@ -1313,7 +1322,7 @@
     scale_fill_distiller(palette = "PRGn", direction = -1)+
     scale_color_distiller(palette = "PRGn", direction = -1)+
     scale_y_continuous(labels = label_number(accuracy = 0.1)) +
-    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,11.5))+
+    coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(5, 9.5))+
     labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Diversity")  +
     theme(axis.text.x = element_text(face = "bold", size = 14), 
           axis.text.y = element_text(face = "bold", size = 14), 
