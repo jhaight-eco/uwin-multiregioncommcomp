@@ -38,14 +38,18 @@
   out <- readRDS("C:/Research/urban/UWIN/analysis_MRCM/data/6_output/test_yeareffect/model1output_mrcm_globalinteractionmodel_sample60k.rds")
   # out$summary
   
-  # for plotting purposes, some parameters may need to be recalculated, depending on which were monitored in the original model
-  # e.g. the city-average occupancy intercept, from which the city- and species-specific intercept phi0 was estimated 
-  mu.phi0 <- apply(out$sims.list$phi0, c(1,2), function(x)   mean(x, na.rm=TRUE)) 
-  
-  # objects for prediction
+  # set up for prediction
   tmp <- out$sims.list  # grab mcmc samples
   npred <- 200          # number of values to predict
   nsamp <- length(tmp[[1]])
+  rm(out); gc()  # clear up some disk space
+  
+  # for plotting purposes, some parameters may need to be recalculated, depending on which were monitored in the original model
+  # e.g. the city-average occupancy intercept, from which the city- and species-specific intercept phi0 was estimated 
+  mu.phi0 <- apply(tmp$phi0, c(1,2), function(x)   mean(x, na.rm=TRUE)) 
+  
+  
+  
 
   
 # Figure 2: Urbanization vs. Occupancy for Contrasting Cities ----
@@ -511,7 +515,7 @@
       plot.mass1
       
       
-      ggsave("./figures/extendeddata_figure2a_speciesoccupancy_vs_mass.png",
+      ggsave("./figures/extendeddata_figure3a_speciesoccupancy_vs_mass.png",
              plot.mass1,
              width = 6,
              height = 4,
@@ -538,7 +542,7 @@
       plot.carn1
       
       
-      ggsave("./figures/extendeddata_figure2b_speciesoccupancy_vs_carnivory.png",
+      ggsave("./figures/extendeddata_figure3b_speciesoccupancy_vs_carnivory.png",
              plot.carn1,
              width = 6,
              height = 4,
