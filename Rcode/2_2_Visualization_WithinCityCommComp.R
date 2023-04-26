@@ -1109,15 +1109,15 @@
 
     # First, compare a low EVI city (Phoenix) to high EVI city (Sanford) with similar temperatures
     t <- data.plot.sr.city %>% filter(city %in% c("safl")) %>% select(impervious, median)
-    slope1 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1])   # rise over run
+    (slope1 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))   # rise over run
     t <- data.plot.sr.city %>% filter(city %in% c("phaz")) %>% select(impervious, median)
-    slope2 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1])
+    (slope2 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))
     slope2/slope1
     
     t <- data.plot.sd.city %>% filter(city %in% c("safl")) %>% select(impervious, median)
-    slope1 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1])
+    (slope1 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))
     t <- data.plot.sd.city %>% filter(city %in% c("phaz")) %>% select(impervious, median)
-    slope2 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1])
+    (slope2 <- (t$median[npred]-t$median[1])/(t$impervious[npred]-t$impervious[1]))
     slope2/slope1
     
     

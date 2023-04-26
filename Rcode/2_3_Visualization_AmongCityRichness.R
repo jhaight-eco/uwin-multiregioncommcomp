@@ -10,7 +10,9 @@ gc()
 set.seed(4321)
 
 # Set working directory
-setwd("YourFilePathHere")
+#setwd("YourFilePathHere")
+# e.g.,
+setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
 
   # Load necessary packages
   library(dplyr)
@@ -42,14 +44,20 @@ setwd("YourFilePathHere")
     # object output from the 'jags()' function in the 'jagsUI' package
     # the original model file itself was unfortunately too large to upload to the data repository
     # this file can be reproduced by running the code in the '1_1_Analysis_FittingMultiRegionCommunityModel.R' script
-    out <- readRDS("./data/modeloutput/model1output_mrcm_globalinteractionmodel_sample60k.rds")
-    out
+    out <- readRDS("C:/Research/urban/UWIN/analysis_MRCM/data/6_output/test_yeareffect/model1output_mrcm_globalinteractionmodel_sample60k.rds")
+    
+    # set up for predictions
+    tmp <- out$sims.list  # grab mcmc samples
+    npred <- 200          # number of values to predict
+    nsamp <- length(tmp[[1]])
+    rm(out); gc()  # clear up some disk space
+    
     
     # Regional diversity estimates
     # Mean estimates of latent species occurrence (species-specific lower-case omega)
-    pm_w <- apply(out$sims.list$w, c(2,3), function(x)   mean(x, na.rm=TRUE)) 
+    pm_w <- apply(tmp$w, c(2,3), function(x)   mean(x, na.rm=TRUE)) 
     # Regional species richness
-    RR <- apply(out$sims.list$w, c(1,3), sum) 
+    RR <- apply(tmp$w, c(1,3), sum) 
     
     # Total # of species
     M <- 37
@@ -108,6 +116,12 @@ setwd("YourFilePathHere")
     
     plot
     
+    ggsave("./figures/ExtendedDataFigure_collinearity_regionalvariables.png",
+           plot,
+           width = 8.5,
+           height = 11,
+           units = "in",
+           dpi = 300)
     
     
 #### Observed (Naive) vs. Predicted Regional Diversity ####
@@ -139,10 +153,7 @@ setwd("YourFilePathHere")
     
     # mu.omega is the logit-scale parameter of omega
     
-    # Set up predictions
-    tmp <- out$sims.list   # grab MCMC samples
-    nsamp <- length(tmp[[1]])          # number of mcmc samples
-    npred <- 200
+    
     
     # Array for storing predicted values
     # Dimension #3 will be the number of covariate effects that you want to predict
@@ -254,6 +265,13 @@ setwd("YourFilePathHere")
     
     plot1
     
+    ggsave("./figures/extendeddata_figure2a_richness_vs_EVI.png",
+           plot1,
+           width = 6,
+           height = 4,
+           units = "in",
+           dpi = 300)
+    
     
 ##### RR vs. MAT #####
     # Get posterior means and 95% CRIs
@@ -288,6 +306,13 @@ setwd("YourFilePathHere")
       )
     
     plot2
+    
+    ggsave("./figures/extendeddata_figure2b_richness_vs_MAT.png",
+           plot2,
+           width = 6,
+           height = 4,
+           units = "in",
+           dpi = 300)
     
     
 ##### RR vs. URB #####
@@ -324,6 +349,13 @@ setwd("YourFilePathHere")
     
     plot3
     
+    ggsave("./figures/extendeddata_figure2c_richness_vs_URB.png",
+           plot3,
+           width = 6,
+           height = 4,
+           units = "in",
+           dpi = 300)
+    
     
 ##### RR vs. AGE #####
     # Get posterior means and 95% CRIs
@@ -356,12 +388,12 @@ setwd("YourFilePathHere")
         axis.title.x = element_text(face = "bold", size = 18), 
         axis.title.y = element_text(face = "bold", size = 18)
       )
+    plot4
     
-    ggsave("G:/My Drive/ASU/Jeff-Jesse-Sharon Document Sharing/UWIN/manuscript/figures/supp2_rr_vs_cityage.png",
+    ggsave("./figures/extendeddata_figure2d_richness_vs_AGE.png",
            plot4,
            width = 6,
            height = 4,
            units = "in",
            dpi = 300)
     
-    plot4
