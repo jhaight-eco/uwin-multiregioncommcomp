@@ -95,7 +95,7 @@ The Bayesian multi-city, community occupancy model that we fit to the species oc
 Script for extracting posterior estimates of species presence from the multi-city community occupancy model and producing posterior estimates of community composition (species richness and diversity)  
 
 **./Rcode/1_3_Analysis_FittingMetaanalysisModel.R**  
-Script for using JAGS to fit the Bayesian log-normal model meta-analysis of community compostion (species richness and diversity) within R, using the R package `jagsUI`  
+Script for using JAGS to fit the Bayesian log-normal meta-analysis models of community compostion (species richness and diversity) within R, using the R package `jagsUI`  
 
 **./Rcode/1_3_jagsmodel_alpha.R**  
 The log-normal model used for the Bayesian meta-analysis of community compostion estimates  
