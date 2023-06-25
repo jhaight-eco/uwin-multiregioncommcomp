@@ -1,6 +1,6 @@
 # uwin-multiregioncommcomp
 
-A repository that contains code and data associated with the submitted manuscript "Urbanization, climate, and species traits shape mammal communities from local to continental scales" (In Review)
+A repository that contains code and data associated with the manuscript "Urbanization, climate, and species traits shape mammal communities from local to continental scales"
 
 This `README` file includes information on the various scripts and datasets used for this analysis, though not every data source is saved in this repository (e.g., Bayesian multi-city, community occupancy model output; GIS data). The manuscript includes citation of all locations from which spatially-linked within-city and among-city covariates were derived.
 
@@ -83,7 +83,7 @@ Within `modelsummary`, there are five files:
 ---
 <div align="center"> <h3>figures</h3> </div>
 
-This contains the component figures produced using the R scripts below, which were combined to create the figures in the published. 
+This contains the component figures produced using the R scripts below, which were combined to create the figures in the published. This includes the subfolder 'mammalgraphics' which contains image files used to represent mammals species in Figure 1 of the manuscript. All mammal graphics were sourced from PhyloPic (https://www.phylopic.org/) and were utilized as part of the public domain or licensed for use as part of the public domain (https://creativecommons.org/publicdomain/zero/1.0/) or under Creative Commons Attribution 3.0 (https://creativecommons.org/licenses/by/3.0/). Mammal graphics are accompanied by the text file 'imageattributions.txt', which specifies each image's source and provides attribution for each image.
 
 
 ---
