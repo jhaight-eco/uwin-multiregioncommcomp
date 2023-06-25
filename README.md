@@ -19,7 +19,7 @@ This contains three subfolders with all the data files used for conducting the a
 `modeloutput`  
 `modelsummary`  
 
-Within `modelinput`, there are two files:  
+Within **`modelinput`**, there are two files:  
 **./data/modelinput/ModelInputData_UWIN_allspecies.csv**  
 Contains data of species-level attributes, including each species' names, taxonomic groupings, and species traits (body mass, log-transformed as 'logmass'; carnivory). Species traits were derived from the EltonTraits 1.0 database (https://doi.org/10.1890/13-1917.1). Columns 'atga' through 'wide' represent each species' known membership in each city's regional species pool, with 1 indicating that the city is part of that species' geographic range. The column 'city_occ' indicates the number of regional species pools each species is a member of. 
 
@@ -49,14 +49,14 @@ Additional explanation of each R object is provided as comments within the scrip
   
   
   
-Within `modeloutput`, there are two files:  
+Within **`modeloutput`**, there are two files:  
 **model2output_logglm_hill0_sample60k.rds**  
 **model3output_logglm_hill1_sample60k.rds**  
-Contain outputs of the Bayesian meta-analysis models of community composition (species richness and diversity), in the form of R objects output by the 'jags()' function.run in the R script **./Rcode/1_3_Analysis_FittingMetaanalysisModel**. Note that the model output file **model1output_mrcm_globalinteractionmodel_sample60k.rds** is not included in this repository, as the file is too large. This file can be replicated by fitting the Bayesian multi-city community occupancy model code using the R script **./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R**.  
+Contain outputs of the Bayesian meta-analysis models of community composition (species richness and diversity), in the form of R objects output by the 'jags()' function.run in the R script **./Rcode/1_3_Analysis_FittingMetaanalysisModel**. Note that the model output file **model1output_mrcm_globalinteractionmodel_sample60k.rds** is not included in this repository, as the file is too large. This file can be replicated by fitting the Bayesian multi-city community occupancy model code using the R script **./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R** and can be shared by the lead author via an email request to jdhaight.eco(at)gmail.com.  
   
   
   
-Within `modelsummary`, there are five files:  
+Within **`modelsummary`**, there are five files:  
 
 **data_sites_mrcmsummary.csv** and **data_sites_metadata.xlsx**  
 A .csv file containing all site-level data used in analyses, accompanied by an .xlsx metadata spreadsheet describing all column names
@@ -74,7 +74,7 @@ A .csv file containing all cit-level data used in analyses, accompanied by an .x
 ---
 <div align="center"> <h3>figures</h3> </div>
 
-This contains all images utilized in the production of the manuscript figures. This folder includes partial produced using the R scripts below, which were subsequently combined within Inkscape (https://inkscape.org/) to create the figures in the published manuscript. 
+This folder contains all images utilized in the production of the manuscript figures. This folder includes partial produced using the R scripts below, which were subsequently combined within Inkscape (https://inkscape.org/) to create the figures in the published manuscript. 
 
 This folder also includes the subfolder **./figures/mammalgraphics** which contains image files used to represent mammals species in Figure 1 of the manuscript. All mammal graphics were sourced from PhyloPic (https://www.phylopic.org/) and were utilized as part of the public domain (https://creativecommons.org/publicdomain/zero/1.0/) or under the Creative Commons Attribution 3.0 license (https://creativecommons.org/licenses/by/3.0/). Mammal graphics are accompanied by the text file **./figures/mammalgraphics/imageattributions.txt**, which specifies each image's source and provides attribution for each image.
 
