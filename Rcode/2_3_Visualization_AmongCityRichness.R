@@ -101,7 +101,7 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
                                      "LAT",
                                      "LON"),
                     #mapping = ggplot2::aes(color = "blue"),
-                    upper = list(continuous = wrap("cor", method = "pearson"),
+                    upper = list(continuous = wrap("cor", method = "pearson", stars = FALSE),
                                  aes(alpha = 0.5, color = "blue4"))#,
                     #diag = NULL
     ) + 
@@ -249,13 +249,12 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
     plot1 <- ggplot() +
       theme_bw() + 
       geom_ribbon(data = data.omega, aes(x = EVI, y = mean*M, ymin = lower95*M, ymax = upper95*M), 
-                  fill = "green3", alpha = 0.2) +
+                  alpha = 0.2) +
       geom_smooth(data = data.omega, aes(x = EVI, y = mean*M, ymin = lower95*M, ymax = upper95*M),
-                  se = FALSE, color = "green4")+
-      geom_point(data = data.reg, aes(x = EVI_av, y = RR_mean), 
-                 color = "green4")+
+                  se = FALSE, color = "black")+
+      geom_point(data = data.reg, aes(x = EVI_av, y = RR_mean))+
       coord_cartesian(xlim=c(min(data.reg$EVI_av), max(0.35)), ylim=c(7,17.5))+
-      labs(x = "Regional Greenness (EVI)", y = "Regional Species \nRichness") +
+      labs(x = "Regional Vegetation Greenness (EVI)", y = "Regional Species \nRichness") +
       theme(
         axis.text.x = element_text(face = "bold", size = 14), 
         axis.text.y = element_text(face = "bold", size = 14), 
@@ -291,11 +290,10 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
     plot2 <- ggplot() +
       theme_bw() + 
       geom_ribbon(data = data.omega, aes(x = MAT, y = mean*M, ymin = lower95*M, ymax = upper95*M), 
-                  fill = "red3", alpha = 0.2) +
+                  alpha = 0.2) +
       geom_smooth(data = data.omega, aes(x = MAT, y = mean*M, ymin = lower95*M, ymax = upper95*M),
-                  se = FALSE, color = "red4")+
-      geom_point(data = data.reg, aes(x = mat_av, y = RR_mean), 
-                 color = "red4")+
+                  se = FALSE, color = "black")+
+      geom_point(data = data.reg, aes(x = mat_av, y = RR_mean))+
       coord_cartesian(xlim=c(min(data.reg$mat_av), max(data.reg$mat_av)), ylim=c(7,17.5))+
       labs(x = "Regional Temperature (°C)", y = "Regional Species \nRichness") +
       theme(
@@ -333,11 +331,10 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
     plot3 <- ggplot() +
       theme_bw() + 
       geom_ribbon(data = data.omega, aes(x = URB, y = mean*M, ymin = lower95*M, ymax = upper95*M), 
-                  fill = "purple3", alpha = 0.2) +
+                  alpha = 0.2) +
       geom_smooth(data = data.omega, aes(x = URB, y = mean*M, ymin = lower95*M, ymax = upper95*M),
-                  se = FALSE, color = "purple4")+
-      geom_point(data = data.reg, aes(x = urb_reg, y = RR_mean), 
-                 color = "purple4")+
+                  se = FALSE, color = "black")+
+      geom_point(data = data.reg, aes(x = urb_reg, y = RR_mean))+
       coord_cartesian(xlim=c(min(data.reg$urb_reg), max(data.reg$urb_reg)), ylim=c(7,17.5))+
       labs(x = "Regional Urbanization (% Urban Cover)", y = "Regional Species \nRichness") +
       theme(
@@ -375,11 +372,10 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
     plot4 <- ggplot() +
       theme_bw() + 
       geom_ribbon(data = data.omega, aes(x = AGE, y = mean*M, ymin = lower95*M, ymax = upper95*M), 
-                  fill = "blue3", alpha = 0.2) +
+                  alpha = 0.2) +
       geom_smooth(data = data.omega, aes(x = AGE, y = mean*M, ymin = lower95*M, ymax = upper95*M),
-                  se = FALSE, color = "blue4")+
-      geom_point(data = data.reg, aes(x = yrs_col, y = RR_mean), 
-                 color = "blue4")+
+                  se = FALSE, color = "black")+
+      geom_point(data = data.reg, aes(x = yrs_col, y = RR_mean))+
       coord_cartesian(xlim=c(min(data.reg$yrs_col), max(data.reg$yrs_col)), ylim=c(7,17.5))+
       labs(x = "Regional City Age (Years)", y = "Regional Species \nRichness") +
       theme(

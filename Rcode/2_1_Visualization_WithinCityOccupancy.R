@@ -99,7 +99,7 @@
           # we will predict effects across a range of hypothetical local urbanization values, under contrasting ranges of regional variables
           # for each regional variable, we will hold all other regional and local variables constant at their mean (zero)
           #nline <- nrow(data.reg)    
-          nline <- 5
+          nline <- 2
           city.num <- paste("city", 1:nline, sep = "")
           
           urban.pred <- seq(min(data.site$imperv_std), max(data.site$imperv_std), length.out = npred)
@@ -307,14 +307,15 @@
       data.plot <- preds.urbEVI
       plot.evi <- ggplot(data = data.plot, aes(x = impervious, y = psi_med, group = city)) +
         theme_bw() + 
-        geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
-        geom_smooth(aes(x = impervious, y = psi_med, group = city, color = EVI), se = FALSE)+
+        #geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
+        geom_smooth(aes(x = impervious, y = psi_med, group = city, color = EVI, linetype = as.factor(EVI)), se = FALSE)+
         geom_ribbon(aes(x = impervious, y = psi_med, group = city, ymin = psi_low95, ymax = psi_upp95, fill = EVI), 
-                    alpha = 0.15) + 
+                    alpha = 0.4) + 
         #gghighlight(city %in% c("safl", "phaz", "ioio"))+
         scale_fill_distiller(palette = "BrBG", direction = 1)+
         scale_color_distiller(palette = "BrBG", direction = 1)+
         scale_y_continuous(labels = label_number(accuracy = 0.1)) +
+        scale_linetype_manual(values = c(2, 1)) +
         coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy") +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
@@ -337,15 +338,16 @@
       data.plot <- preds.urbMAT
       plot.mat <- ggplot(data = data.plot) +
         theme_bw() + 
-        geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
-        geom_smooth(aes(x = impervious, y = psi_med, group = city, color = MAT), se = FALSE)+
+        #geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
+        geom_smooth(aes(x = impervious, y = psi_med, group = city, color = MAT, linetype = as.factor(MAT)), se = FALSE)+
         geom_ribbon(aes(x = impervious, y = psi_med, group = city, ymin = psi_low95, ymax = psi_upp95, fill = MAT), 
-                    alpha = 0.15) + 
+                    alpha = 0.4) + 
         #gghighlight(city %in% c("scut", "mela"))+
         theme_bw() + 
         scale_fill_distiller(palette = "RdYlBu", direction = -1)+
         scale_color_distiller(palette = "RdYlBu", direction = -1)+
         scale_y_continuous(labels = label_number(accuracy = 0.1)) +
+        scale_linetype_manual(values = c(2, 1)) +
         coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
@@ -370,15 +372,16 @@
       data.plot <- preds.urbURB
       plot.urb <- ggplot(data = data.plot) +
         theme_bw() + 
-        geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
-        geom_smooth(aes(x = impervious, y = psi_med, group = city, color = URB), se = FALSE)+
+        #geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
+        geom_smooth(aes(x = impervious, y = psi_med, group = city, color = URB, linetype = as.factor(URB)), se = FALSE)+
         geom_ribbon(aes(x = impervious, y = psi_med, group = city, ymin = psi_low95, ymax = psi_upp95, fill = URB), 
-                    alpha = 0.15) + 
+                    alpha = 0.4) + 
         #gghighlight(city %in% c("scut", "chil"))+
         theme_bw() + 
         scale_fill_distiller(palette = "PuOr", direction = 1)+
         scale_color_distiller(palette = "PuOr", direction = 1)+
         scale_y_continuous(labels = label_number(accuracy = 0.1)) +
+        scale_linetype_manual(values = c(2, 1)) +
         coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
@@ -403,14 +406,15 @@
       data.plot <- preds.urbAGE
       plot.age <- ggplot(data = data.plot) +
         theme_bw() + 
-        geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
-        geom_smooth(aes(x = impervious, y = psi_med, group = city, color = AGE), se = FALSE)+
+        #geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
+        geom_smooth(aes(x = impervious, y = psi_med, group = city, color = AGE, linetype = as.factor(AGE)), se = FALSE)+
         geom_ribbon(aes(x = impervious, y = psi_med, group = city, ymin = psi_low95, ymax = psi_upp95, fill = AGE), 
-                    alpha = 0.15) + 
+                    alpha = 0.4) + 
         #gghighlight(city %in% c("inin", "wide"))+ 
         scale_fill_distiller(palette = "PRGn", direction = -1)+
         scale_color_distiller(palette = "PRGn", direction = -1)+
         scale_y_continuous(labels = label_number(accuracy = 0.1)) +
+        scale_linetype_manual(values = c(2, 1)) +
         coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
         labs(x = "Urbanization \n(% Impervious Surface)", y = "Species Occupancy")  +
         theme(axis.text.x = element_text(face = "bold", size = 14), 
