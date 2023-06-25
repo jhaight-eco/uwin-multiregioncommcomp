@@ -83,7 +83,7 @@ Within `modelsummary`, there are five files:
 ---
 <div align="center"> <h3>figures</h3> </div>
 
-This contains the component figures produced using the R scripts below, which were combined to create the figures in the published. This includes the subfolder 'mammalgraphics' which contains image files used to represent mammals species in Figure 1 of the manuscript. All mammal graphics were sourced from PhyloPic (https://www.phylopic.org/) and were utilized as part of the public domain or licensed for use as part of the public domain (https://creativecommons.org/publicdomain/zero/1.0/) or under Creative Commons Attribution 3.0 (https://creativecommons.org/licenses/by/3.0/). Mammal graphics are accompanied by the text file 'imageattributions.txt', which specifies each image's source and provides attribution for each image.
+This contains the component figures produced using the R scripts below, which were combined to create the figures in the published. This includes the subfolder 'mammalgraphics' which contains image files used to represent mammals species in Figure 1 of the manuscript. All mammal graphics were sourced from PhyloPic (https://www.phylopic.org/) and were utilized as part of the public domain (https://creativecommons.org/publicdomain/zero/1.0/) or under the Creative Commons Attribution 3.0 license (https://creativecommons.org/licenses/by/3.0/). Mammal graphics are accompanied by the text file 'imageattributions.txt', which specifies each image's source and provides attribution for each image.
 
 
 ---
