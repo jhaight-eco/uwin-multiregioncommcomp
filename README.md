@@ -6,7 +6,7 @@ This repository contains code and data used for fitting a multi-city community o
 This `README` file includes information on the various scripts and datasets used for this analysis, though not every data source is saved in this repository (e.g., Bayesian multi-city, community occupancy model output; GIS data). The manuscript includes citation of all locations from which spatially-linked within-city and among-city covariates were derived. This readme file is organized based on the three main folders into which the reposistory is organized
 1. [data](#data)
 2. [figures](#figures)
-3. [Rcode](#Rcode)
+3. [Rcode](#Rcode)  
 
 Please direct all questions to Jeffrey Haight jdhaight.eco(at)gmail.com
 
@@ -71,7 +71,7 @@ Within **`modelsummary`**, there are five files:
 ---
 <div align="center"> <h3>figures</h3> </div>
 
-This folder contains all images utilized in the production of the manuscript figures. This folder includes partial produced using the R scripts below, which were subsequently combined within Inkscape (https://inkscape.org/) to create the figures in the published manuscript. 
+This folder contains all images utilized in the production of the manuscript figures. This folder includes visualizations produced using the R scripts (see **Rcode** below). These visualizations were then combined within with one another within Inkscape (https://inkscape.org/) to create the figures in the published manuscript. 
 
 The `figures` folder also includes the subfolder **./figures/mammalgraphics** which contains image files used to represent mammals species in Figure 1 of the manuscript. All mammal graphics were sourced from PhyloPic (https://www.phylopic.org/) and were utilized as part of the public domain (https://creativecommons.org/publicdomain/zero/1.0/) or under the Creative Commons Attribution 3.0 license (https://creativecommons.org/licenses/by/3.0/). Mammal graphics are accompanied by the text file **./figures/mammalgraphics/imageattributions.txt**, which specifies each image's source and provides attribution for each image, as outlined below.
 | File Name  | Creative Commons License | Attribution  |  Link  |
