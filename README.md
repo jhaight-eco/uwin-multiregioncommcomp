@@ -1,13 +1,14 @@
-# uwin-multiregioncommcomp
+# A repository for:
+Haight, J. D.,; S. J. Hall; M. Fidino; S. A. Adalsteinsson; A. A. Ahlers; J. Angstman; W. J. B. Anthonysamy; E. Biro; M. K. Collins; B. Dugelby; T. Gallo; A. M. Green; L. Hartley; M. J. Jordan; C. A. M. Kay; E. W. Lehrer; R. A. Long; B. MacDougall; S. B. Magle; D. E. Minier; C. Mowry; M. Murray; K. Nininger; M. E. Pendergast; K. R. Remine; T. Ryan; C. Salsbury; C. J. Schell; Ç. Șekercioğlu; C. J. Shier; K. C. Simon; C. C. St. Clair; T. Stankowich; C. J. Stevenson; L. Wayne; D. Will; J. Williamson; L. Wilson; A. J. Zellmer; J. S. Lewis. Urbanization, climate, and species traits shape mammal communities from local to continental scales. *Nature Ecology & Evolution*  
 
-A repository that contains code and data associated with the manuscript "Urbanization, climate, and species traits shape mammal communities from local to continental scales"
+This repository contains code and data used for fitting a multi-city community occupancy model to mammal occurrence data across 20 North American cities, conducting a meta-analysis of local community composition estimates, and producing visualizations based on these results.
 
-This `README` file includes information on the various scripts and datasets used for this analysis, though not every data source is saved in this repository (e.g., Bayesian multi-city, community occupancy model output; GIS data). The manuscript includes citation of all locations from which spatially-linked within-city and among-city covariates were derived.
+This `README` file includes information on the various scripts and datasets used for this analysis, though not every data source is saved in this repository (e.g., Bayesian multi-city, community occupancy model output; GIS data). The manuscript includes citation of all locations from which spatially-linked within-city and among-city covariates were derived. This readme file is organized based on the three main folders into which the reposistory is organized
+1. [data](#data)
+2. [figures](#figures)
+3. [Rcode](#Rcode)
 
 Please direct all questions to Jeffrey Haight jdhaight.eco(at)gmail.com
-
-Full author list:
-Haight, J. D.,; S. J. Hall; M. Fidino; S. A. Adalsteinsson; A. A. Ahlers; J. Angstman; W. J. B. Anthonysamy; E. Biro; M. K. Collins; B. Dugelby; T. Gallo; A. M. Green; L. Hartley; M. J. Jordan; C. A. M. Kay; E. W. Lehrer; R. A. Long; B. MacDougall; S. B. Magle; D. E. Minier; C. Mowry; M. Murray; K. Nininger; M. E. Pendergast; K. R. Remine; T. Ryan; C. Salsbury; C. J. Schell; Ç. Șekercioğlu; C. J. Shier; K. C. Simon; C. C. St. Clair; T. Stankowich; C. J. Stevenson; L. Wayne; D. Will; J. Williamson; L. Wilson; A. J. Zellmer; J. S. Lewis
 
 
 
