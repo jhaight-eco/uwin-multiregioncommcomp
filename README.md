@@ -113,6 +113,20 @@ This folder contains all R script files used for conducting the analyses that pr
 |**./Rcode/2_2_Visualization_WithinCityCommComp.R**| Script for creating figures visualizing within-city relationships between local community composition (species richness and diversity) and the variables of local urbanization, local patch density, local agricultural footprint, as well as correlations between each pair of local variables and among-city variation in within-city composition-urbanization relationships  |
 | **./Rcode/2_3_Visualization_AmongCityRichness.R**  | Script for creating figures visualizing relationships between among-city variation in regional species richness, as well as correlations between each pair of among-city variables  |  
 
+Code was run using the following R packages:  
+| Package  | Version  |
+|---|---|
+| jagsUI | 1.5.2 |
+| dplyr | 1.0.8 |
+| beepr | 1.3 |
+| reshape2 | 1.4.4 |
+| ggplot2 | 3.3.5 |
+| [peRReo](https://github.com/jbgb13/peRReo) | 0.1.0 |
+| png | 0.1-7 |
+| scales | 1.2.0 |
+| gghighlight | 0.3.2 |
+| GGally | 2.1.2 |
+
  
 
 
