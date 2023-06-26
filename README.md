@@ -3,7 +3,7 @@ Haight, J. D.,; S. J. Hall; M. Fidino; S. A. Adalsteinsson; A. A. Ahlers; J. Ang
 
 This repository contains code and data used for fitting a multi-city community occupancy model to mammal occurrence data across 20 North American cities, conducting a meta-analysis of local community composition estimates, and producing visualizations based on these results.
 
-This `README` file includes information on the various scripts and datasets used for this analysis, though not every data source is saved in this repository (e.g., Bayesian multi-city, community occupancy model output; GIS data). The manuscript includes citation of all locations from which spatially-linked within-city and among-city covariates were derived. This readme file is organized based on the three main folders into which the reposistory is organized
+This `README` file includes information on the various scripts and datasets used for this analysis, though not every data source is saved in this repository (e.g., Bayesian multi-city, community occupancy model output; GIS data). The manuscript includes citation of all locations from which spatially-linked within-city and among-city covariates were derived. This `README` file is organized into three sections corresponding to the three main folders into which the reposistory is organized
 1. [data](#data)
 2. [figures](#figures)
 3. [Rcode](#Rcode)  
