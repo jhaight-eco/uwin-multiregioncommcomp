@@ -50,13 +50,14 @@ Additional explanation of each R object is provided as comments within the scrip
   
   
 Within **`modeloutput`**, there are two files:  
-**model2output_logglm_hill0_sample60k.rds**  
-**model3output_logglm_hill1_sample60k.rds**  
-Contain outputs of the Bayesian meta-analysis models of community composition (species richness and diversity), in the form of R objects output by the 'jags()' function.run in the R script **./Rcode/1_3_Analysis_FittingMetaanalysisModel**. Note that the model output file **model1output_mrcm_globalinteractionmodel_sample60k.rds** is not included in this repository, as the file is too large. This file can be replicated by fitting the Bayesian multi-city community occupancy model code using the R script **./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R** and can be shared by the lead author via an email request to jdhaight.eco(at)gmail.com.  
+**model2output_logglm_hill0_sample60k.rds**  and **model3output_logglm_hill1_sample60k.rds** contain outputs of the Bayesian meta-analysis models of community composition (species richness and diversity), in the form of R objects output by the 'jags()' function.run in the R script **./Rcode/1_3_Analysis_FittingMetaanalysisModel**. Note that the model output file **model1output_mrcm_globalinteractionmodel_sample60k.rds** is not included in this repository, as the file is too large. This file can be replicated by fitting the Bayesian multi-city community occupancy model code using the R script **./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R** and can be shared by the lead author via an email request to jdhaight.eco(at)gmail.com.  
   
   
   
 Within **`modelsummary`**, there are five files:  
+| File  | Description  |
+|---|---|
+|   |   |
 
 **data_sites_mrcmsummary.csv** and **data_sites_metadata.xlsx**  
 A .csv file containing all site-level data used in analyses, accompanied by an .xlsx metadata spreadsheet describing all column names
@@ -76,8 +77,28 @@ A .csv file containing all cit-level data used in analyses, accompanied by an .x
 
 This folder contains all images utilized in the production of the manuscript figures. This folder includes partial produced using the R scripts below, which were subsequently combined within Inkscape (https://inkscape.org/) to create the figures in the published manuscript. 
 
-This folder also includes the subfolder **./figures/mammalgraphics** which contains image files used to represent mammals species in Figure 1 of the manuscript. All mammal graphics were sourced from PhyloPic (https://www.phylopic.org/) and were utilized as part of the public domain (https://creativecommons.org/publicdomain/zero/1.0/) or under the Creative Commons Attribution 3.0 license (https://creativecommons.org/licenses/by/3.0/). Mammal graphics are accompanied by the text file **./figures/mammalgraphics/imageattributions.txt**, which specifies each image's source and provides attribution for each image.
-
+This folder also includes the subfolder **./figures/mammalgraphics** which contains image files used to represent mammals species in Figure 1 of the manuscript. All mammal graphics were sourced from PhyloPic (https://www.phylopic.org/) and were utilized as part of the public domain (https://creativecommons.org/publicdomain/zero/1.0/) or under the Creative Commons Attribution 3.0 license (https://creativecommons.org/licenses/by/3.0/). Mammal graphics are accompanied by the text file **./figures/mammalgraphics/imageattributions.txt**, which specifies each image's source and provides attribution for each image, as outlined below.
+| File Name  | Creative Commons License | Attribution  |  Link  |
+|---|---|---|---|
+| Bassariscus astutus  | Attribution 3.0 Unported  |  Anna Willoughby  |  https://www.phylopic.org/images/26891983-827f-4178-8cfd-e7e95717ba26/bassariscus-astutus  |
+| Canis latrans  | CC0 1.0 Universal Public Domain Dedication   |  Margot Michaud  |  https://www.phylopic.org/images/5a0398e3-a455-4ca6-ba86-cf3f1b25977a/canis-latrans  |
+| Castor canadensis  |  CC0 1.0 Universal Public Domain Dedication  |  Margot Michaud  |  http://phylopic.org/image/be8670c2-a5bd-4b44-88e8-92f8b0c7f4c6/  |
+| Didelphis virginiana  | Attribution 3.0 Unported  |  Sarah Werning  |  http://phylopic.org/image/91324e57-b3f1-42e0-abe3-43e5bc8aa4c6/  |
+| Glaucomys volans | Attribution 3.0 Unported  | Chloé Schmidt   |  https://www.phylopic.org/images/588eb9cc-17f8-4150-9d26-6423f166b714/glaucomys-volans  |
+| Lepus americanus  | CC0 1.0 Universal Public Domain Dedication   | Maha Ghazal   | https://www.phylopic.org/images/8e61e166-11f4-4377-a923-9b5b597b6eba/lepus-americanus   |
+| Lepus californicus  | Attribution 3.0 Unported  |  Gabriela Palomo-Munoz  |  https://www.phylopic.org/images/44f9db61-88e2-4a44-82f5-57dea9b3798d/lepus-californicus  |
+| Lontra canadensis  | CC0 1.0 Universal Public Domain Dedication   | Margot Michaud   |  https://www.phylopic.org/images/d3882718-65d6-43ce-9a25-90d1c583f2fc/lontra-canadensis  |
+| Lynx rufus  | CC0 1.0 Universal Public Domain Dedication   |  Margot Michaud  |  http://phylopic.org/image/20442a12-596d-4987-a668-509c19a155da/  |
+|  Mephitis mephitis | CC0 1.0 Universal Public Domain Dedication   |  Margot Michaud  |  https://www.phylopic.org/images/4a78cd1b-fd1f-496c-aa96-1b98aba17375/mephitis-mephitis  |
+| Odocoileus virginianus  | CC0 1.0 Universal Public Domain Dedication   |  Tracy A. Heath  |  http://phylopic.org/image/56f6fdb2-15d0-43b5-b13f-714f2cb0f5d0/  |
+| Otospermophilus variegatus  | CC0 1.0 Universal Public Domain Dedication   |  Catherine Yasuda  | http://phylopic.org/image/5ebe5f2c-2407-4245-a8fe-397466bb06da/   |
+| Pecari tajacu  | CC0 1.0 Universal Public Domain Dedication   |  Steven Traver  | http://phylopic.org/image/44fb7d4f-6d59-432b-9583-a87490259789/   |
+| Procyon lotor  | CC0 1.0 Universal Public Domain Dedication   |  Mathieu Basille  |  http://phylopic.org/image/e805d164-21e7-4657-979a-226f6ccc7f15/  |
+|  Puma concolor | CC0 1.0 Universal Public Domain Dedication   |  An Ignorant Atheist  |  http://phylopic.org/image/3f8eff77-2868-4121-8d7d-a55ebdd49e04/  |
+|  Tamiasciurus hudsonicus | CC0 1.0 Universal Public Domain Dedication   |  xgirouxb  | http://phylopic.org/image/dad08fea-5263-4f57-a37b-c27cbe0eb9a5/   |
+| Tamias striatus  | Attribution 3.0 Unported | Chloé Schmidt   |  https://www.phylopic.org/images/6239499e-114f-4828-bb0c-643351c70b9c/tamias-striatus  |
+|  Urocyon cinereoargenteus |  Attribution 3.0 Unported | Brian Gratwicke (photo) and T. Michael Keesey (vectorization)   |  http://phylopic.org/image/20da6c7c-2584-4cee-921b-ebd09384567b/  |
+| Ursus americanus  |  CC0 1.0 Universal Public Domain Dedication  |  Tracy A. Heath  |  http://phylopic.org/image/5a5dafa2-6388-43b8-a15a-4fd21cd17594/  |
 
 ---
 ---
@@ -85,29 +106,38 @@ This folder also includes the subfolder **./figures/mammalgraphics** which conta
 
 This folder contains all R script files used for conducting the analyses that produce the `modeloutput` and `modelsummary` data and the `figures`. There are a total of eight R scripts, numbered by the order in which they are to be run. Scripts 1_1 through 1_3 are for conducting the analyses, while 2_1 through 2_3 are for producing the figures components.
 
-**./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R**  
-Script for using JAGS to fit the Bayesian multi-city, community occupancy model within R, using the R package `jagsUI`  
+| File  | Description  |
+|---|---|
+|**./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R**   | Script for using JAGS to fit the Bayesian multi-city, community occupancy model within R, using the R package `jagsUI`    |
+|**./Rcode/1_1_jagsmodel_mrcm_site3_reg4_spp2_det0_regint4.R**   |  The Bayesian multi-city, community occupancy model that we fit to the species occurrence data   |
+|**./Rcode/1_2_Analysis_CommunityCompositionEstimation.R**   |  Script for extracting posterior estimates of species presence from the multi-city community occupancy model and producing posterior estimates of community composition (species richness and diversity) |
+|**./Rcode/1_3_Analysis_FittingMetaanalysisModel.R**  | Script for using JAGS to fit the Bayesian log-normal meta-analysis models of community compostion (species richness and diversity) within R, using the R package `jagsUI`  |
+|**./Rcode/1_3_jagsmodel_alpha.R**  | The log-normal model used for the Bayesian meta-analysis of community compostion estimates   |
+|**./Rcode/2_1_Visualization_WithinCityOccupancy.R**  | Script for creating figures visualizing within-city relationships between community-average occupancy and th variables of local urbanization, local patch density, local agricultural footprint, as well as among-city variation in within-city composition-urbanization relationships  |
+|**./Rcode/2_2_Visualization_WithinCityCommComp.R**| Script for creating figures visualizing within-city relationships between local community composition (species richness and diversity) and the variables of local urbanization, local patch density, local agricultural footprint, as well as correlations between each pair of local variables and among-city variation in within-city composition-urbanization relationships  |
+| **./Rcode/2_3_Visualization_AmongCityRichness.R**  | Script for creating figures visualizing relationships between among-city variation in regional species richness, as well as correlations between each pair of among-city variables  |
 
-**./Rcode/1_1_jagsmodel_mrcm_site3_reg4_spp2_det0_regint4.R**  
-The Bayesian multi-city, community occupancy model that we fit to the species occurrence data  
+ 
 
-**./Rcode/1_2_Analysis_CommunityCompositionEstimation.R**  
-Script for extracting posterior estimates of species presence from the multi-city community occupancy model and producing posterior estimates of community composition (species richness and diversity)  
 
-**./Rcode/1_3_Analysis_FittingMetaanalysisModel.R**  
-Script for using JAGS to fit the Bayesian log-normal meta-analysis models of community compostion (species richness and diversity) within R, using the R package `jagsUI`  
+ 
 
-**./Rcode/1_3_jagsmodel_alpha.R**  
-The log-normal model used for the Bayesian meta-analysis of community compostion estimates  
 
-**./Rcode/2_1_Visualization_WithinCityOccupancy.R**  
-Script for creating figures visualizing within-city relationships between community-average occupancy and th variables of local urbanization, local patch density, local agricultural footprint, as well as among-city variation in within-city composition-urbanization relationships  
+  
 
-**./Rcode/2_2_Visualization_WithinCityCommComp.R**  
-Script for creating figures visualizing within-city relationships between local community composition (species richness and diversity) and the variables of local urbanization, local patch density, local agricultural footprint, as well as correlations between each pair of local variables and among-city variation in within-city composition-urbanization relationships  
+ 
+  
 
-**./Rcode/2_3_Visualization_AmongCityRichness.R**  
-Script for creating figures visualizing relationships between among-city variation in regional species richness, as well as correlations between each pair of among-city variables  
+ 
+
+ 
+  
+
+  
+  
+
+  
+  
 
 
 ---
