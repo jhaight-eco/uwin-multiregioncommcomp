@@ -71,11 +71,8 @@ Within **`modelsummary`**, there are five files:
 <div align="center"> <h3>figures</h3> </div>
 
 This folder contains all images utilized in the production of the manuscript figures. This folder includes partial produced using the R scripts below, which were subsequently combined within Inkscape (https://inkscape.org/) to create the figures in the published manuscript. 
-| File  | Description  |
-|---|---|
-|   |   |
 
-This folder also includes the subfolder **./figures/mammalgraphics** which contains image files used to represent mammals species in Figure 1 of the manuscript. All mammal graphics were sourced from PhyloPic (https://www.phylopic.org/) and were utilized as part of the public domain (https://creativecommons.org/publicdomain/zero/1.0/) or under the Creative Commons Attribution 3.0 license (https://creativecommons.org/licenses/by/3.0/). Mammal graphics are accompanied by the text file **./figures/mammalgraphics/imageattributions.txt**, which specifies each image's source and provides attribution for each image, as outlined below.
+The `figures` folder also includes the subfolder **./figures/mammalgraphics** which contains image files used to represent mammals species in Figure 1 of the manuscript. All mammal graphics were sourced from PhyloPic (https://www.phylopic.org/) and were utilized as part of the public domain (https://creativecommons.org/publicdomain/zero/1.0/) or under the Creative Commons Attribution 3.0 license (https://creativecommons.org/licenses/by/3.0/). Mammal graphics are accompanied by the text file **./figures/mammalgraphics/imageattributions.txt**, which specifies each image's source and provides attribution for each image, as outlined below.
 | File Name  | Creative Commons License | Attribution  |  Link  |
 |---|---|---|---|
 | Bassariscus astutus  | Attribution 3.0 Unported  |  Anna Willoughby  |  https://www.phylopic.org/images/26891983-827f-4178-8cfd-e7e95717ba26/bassariscus-astutus  |
