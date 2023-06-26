@@ -113,8 +113,6 @@ This folder contains all R script files used for conducting the analyses that pr
 |**./Rcode/2_2_Visualization_WithinCityCommComp.R**| Script for creating figures visualizing within-city relationships between local community composition (species richness and diversity) and the variables of local urbanization, local patch density, local agricultural footprint, as well as correlations between each pair of local variables and among-city variation in within-city composition-urbanization relationships  |
 | **./Rcode/2_3_Visualization_AmongCityRichness.R**  | Script for creating figures visualizing relationships between among-city variation in regional species richness, as well as correlations between each pair of among-city variables  |  
 
-[Back to table of contents ⤒](#A-repository-for:)
-
  
 
 
