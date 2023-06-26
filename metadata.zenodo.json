@@ -1,0 +1,27 @@
+{
+    "description": "<p>Archive of repository: <a href=\"https://github.com/jhaight-eco/uwin-multiregioncommcomp\">https://github.com/jhaight-eco/uwin-multiregioncommcomp</a></p>", 
+    "license": "other-open", 
+    "title": "Data and Code for Urbanization, Climate, and Species Traits Shape Mammal Communities from Local to Continental Scales", 
+    "version": "v1.0.1", 
+    "upload_type": "software", 
+    "publication_date": "2023-06-26", 
+    "creators": [
+        {
+            "name": "Haight, J. D., et al."
+"
+        }
+    ], 
+    "access_right": "open", 
+    "related_identifiers": [
+        {
+            "scheme": "url", 
+            "identifier": "https://github.com/jhaight-eco/uwin-multiregioncommcomp/tree/v1.0.1", 
+            "relation": "isSupplementTo"
+        }, 
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.8083492", 
+            "relation": "isVersionOf"
+        }
+    ]
+}
