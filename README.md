@@ -15,9 +15,9 @@ Haight, J. D.,; S. J. Hall; M. Fidino; S. A. Adalsteinsson; A. A. Ahlers; J. Ang
 <div align="center"> <h3>data</h3> </div>
 
 This contains three subfolders with all the data files used for conducting the analyses and producing the `figures`:  
-`modelinput`  
-`modeloutput`  
-`modelsummary`  
+**`modelinput`**  
+**`modeloutput`**   
+**`modelsummary`**  
 
 Within **`modelinput`**, there are two files:  
 **./data/modelinput/ModelInputData_UWIN_allspecies.csv**  
@@ -83,7 +83,7 @@ This folder also includes the subfolder **./figures/mammalgraphics** which conta
 ---
 <div align="center"> <h3>Rcode</h3> </div>
 
-This folder contains all R script files used for conducting the analyses and producing the `figures`. There are a total of eight R scripts, numbered by the order in which they are to be run. Scripts 1_1 through 1_3 are for conducting the analyses, while 2_1 through 2_3 are for producing the figures components.
+This folder contains all R script files used for conducting the analyses that produce the `modeloutput` and `modelsummary` data and the `figures`. There are a total of eight R scripts, numbered by the order in which they are to be run. Scripts 1_1 through 1_3 are for conducting the analyses, while 2_1 through 2_3 are for producing the figures components.
 
 **./Rcode/1_1_Analysis_FittingMultiRegionCommunityModel.R**  
 Script for using JAGS to fit the Bayesian multi-city, community occupancy model within R, using the R package `jagsUI`  
