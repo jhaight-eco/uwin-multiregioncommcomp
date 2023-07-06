@@ -84,7 +84,6 @@ The `figures` folder also includes the subfolder **./figures/mammalgraphics** wh
 | Didelphis virginiana  | Attribution 3.0 Unported  |  Sarah Werning  |  http://phylopic.org/image/91324e57-b3f1-42e0-abe3-43e5bc8aa4c6/  |
 | Glaucomys volans | Attribution 3.0 Unported  | Chloé Schmidt   |  https://www.phylopic.org/images/588eb9cc-17f8-4150-9d26-6423f166b714/glaucomys-volans  |
 | Lepus americanus  | CC0 1.0 Universal Public Domain Dedication   | Maha Ghazal   | https://www.phylopic.org/images/8e61e166-11f4-4377-a923-9b5b597b6eba/lepus-americanus   |
-| Lepus californicus  | Attribution 3.0 Unported  |  Gabriela Palomo-Munoz  |  https://www.phylopic.org/images/44f9db61-88e2-4a44-82f5-57dea9b3798d/lepus-californicus  |
 | Lontra canadensis  | CC0 1.0 Universal Public Domain Dedication   | Margot Michaud   |  https://www.phylopic.org/images/d3882718-65d6-43ce-9a25-90d1c583f2fc/lontra-canadensis  |
 | Lynx rufus  | CC0 1.0 Universal Public Domain Dedication   |  Margot Michaud  |  http://phylopic.org/image/20442a12-596d-4987-a668-509c19a155da/  |
 |  Mephitis mephitis | CC0 1.0 Universal Public Domain Dedication   |  Margot Michaud  |  https://www.phylopic.org/images/4a78cd1b-fd1f-496c-aa96-1b98aba17375/mephitis-mephitis  |
