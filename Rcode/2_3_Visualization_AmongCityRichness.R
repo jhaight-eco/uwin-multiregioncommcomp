@@ -105,7 +105,7 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
                                  aes(alpha = 0.5, color = "blue4"))#,
                     #diag = NULL
     ) + 
-      theme_bw() + 
+      theme_classic() + 
       theme(
         axis.text.x = element_text(face = "bold", size = 8, angle = -90), 
         axis.text.y = element_text(face = "bold", size = 8), 
@@ -132,7 +132,7 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
       geom_point() +
       coord_cartesian(xlim=c(7, 14), ylim=c(7, 14)) +
       geom_abline(intercept = 0, slope = 1) +
-      theme_bw()  +
+      theme_classic()  +
       theme(
         #axis.text.x = element_blank(),
         axis.ticks = element_blank(),
@@ -247,7 +247,7 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
     
     # Note: by multiplying omega by the total number of species (M), you get regional species richness
     plot1 <- ggplot() +
-      theme_bw() + 
+      theme_classic() + 
       geom_ribbon(data = data.omega, aes(x = EVI, y = mean*M, ymin = lower95*M, ymax = upper95*M), 
                   alpha = 0.2) +
       geom_smooth(data = data.omega, aes(x = EVI, y = mean*M, ymin = lower95*M, ymax = upper95*M),
@@ -288,7 +288,7 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
     ))
     
     plot2 <- ggplot() +
-      theme_bw() + 
+      theme_classic() + 
       geom_ribbon(data = data.omega, aes(x = MAT, y = mean*M, ymin = lower95*M, ymax = upper95*M), 
                   alpha = 0.2) +
       geom_smooth(data = data.omega, aes(x = MAT, y = mean*M, ymin = lower95*M, ymax = upper95*M),
@@ -329,7 +329,7 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
     ))
     
     plot3 <- ggplot() +
-      theme_bw() + 
+      theme_classic() + 
       geom_ribbon(data = data.omega, aes(x = URB, y = mean*M, ymin = lower95*M, ymax = upper95*M), 
                   alpha = 0.2) +
       geom_smooth(data = data.omega, aes(x = URB, y = mean*M, ymin = lower95*M, ymax = upper95*M),
@@ -370,7 +370,7 @@ setwd("C:/Users/User/Documents/GitHub/uwin-multiregioncommcomp")
     ))
     
     plot4 <- ggplot() +
-      theme_bw() + 
+      theme_classic() + 
       geom_ribbon(data = data.omega, aes(x = AGE, y = mean*M, ymin = lower95*M, ymax = upper95*M), 
                   alpha = 0.2) +
       geom_smooth(data = data.omega, aes(x = AGE, y = mean*M, ymin = lower95*M, ymax = upper95*M),
