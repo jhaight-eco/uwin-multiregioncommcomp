@@ -97,7 +97,7 @@
                                    "Local \nAgricultural Footprint"),
                   upper = list(continuous = wrap("cor", method = "pearson", stars = FALSE)),
     ) + 
-    theme_bw() + 
+    theme_classic() + 
     theme(
       axis.text.x = element_text(face = "bold", size = 9), 
       axis.text.y = element_text(face = "bold", size = 9), 
@@ -377,7 +377,7 @@
   data.plot <- preds.urbEVI
   
   plot.sr <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     #geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city), se = FALSE, lwd = 1.2, color = "gray20") +
     geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city, color = EVI, linetype = as.factor(EVI)), se = FALSE) +
     geom_ribbon(data = data.plot, aes(x = impervious, y = sr_med, group = city, ymin = sr_low95, ymax = sr_upp95, fill = EVI), alpha = 0.045) + 
@@ -399,7 +399,7 @@
   
   #data.plot <- preds.sd.city
   plot.sd <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     #geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city), se = FALSE, lwd = 1.2, color = "gray20") +
     geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city, color = EVI, linetype = as.factor(EVI)), se = FALSE) +
     geom_ribbon(data = data.plot, aes(x = impervious, y = sd_med, group = city, ymin = sd_low95, ymax = sd_upp95, fill = EVI), alpha = 0.045) + 
@@ -443,7 +443,7 @@
   data.plot <- preds.urbMAT
   
   plot.sr <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     #geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city), 
     #            se = FALSE, lwd = 1.2, color = "gray20") +
     geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city, color = MAT, linetype = as.factor(MAT)), 
@@ -467,7 +467,7 @@
   plot.sr
   
   plot.sd <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     #geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city), 
     #            se = FALSE, lwd = 1.2, color = "gray20") +
     geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city, color = MAT, linetype = as.factor(MAT)), 
@@ -513,7 +513,7 @@
   data.plot <- preds.urbURB
   
   plot.sr <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     #geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city), 
     #            se = FALSE, lwd = 1.2, color = "gray20") +
     geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city, color = URB, linetype = as.factor(URB)), 
@@ -536,7 +536,7 @@
     ) 
   
   plot.sd <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     #geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city), 
     #            se = FALSE, lwd = 1.2, color = "gray20") +
     geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city, color = URB, linetype = as.factor(URB)), 
@@ -582,7 +582,7 @@
   data.plot <- preds.urbAGE
   
   plot.sr <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     #geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city), 
     #            se = FALSE, lwd = 1.2, color = "gray20") +
     geom_smooth(data = data.plot, aes(x = impervious, y = sr_med, group = city, color = AGE, linetype = as.factor(AGE)), 
@@ -605,7 +605,7 @@
     ) 
   
   plot.sd <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     #geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city), 
     #            se = FALSE, lwd = 1.2, color = "gray20") +
     geom_smooth(data = data.plot, aes(x = impervious, y = sd_med, group = city, color = AGE, linetype = as.factor(AGE)), 
@@ -817,7 +817,7 @@
                 fill = calle[7], alpha = 0.5) +
     geom_smooth(data = preds_sr_urb, aes(x = cov1, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[8])+
-    theme_bw() + 
+    theme_classic() + 
     scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(0, 3, 6, 9, 12)) +
     coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0, 12))+
     labs(x = "Local Urbanization \n(% Impervious Surface)", y = "Species Richness")  +
@@ -846,7 +846,7 @@
                 fill = calle[7], alpha = 0.5) +
     geom_smooth(data = preds_sd_urb, aes(x = cov1, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[8])+
-    theme_bw() + 
+    theme_classic() + 
     scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(2, 4, 6, 8, 10, 12)) +
     coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(3, 12))+
     labs(x = "Local Urbanization \n(% Impervious Surface)", y = "Species Diversity")  +
@@ -878,7 +878,7 @@
                 fill = calle[2], alpha = 0.5) +
     geom_smooth(data = preds_sr_pd, aes(x = cov1, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[5])+
-    theme_bw() + 
+    theme_classic() + 
     scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(0, 3, 6, 9, 12)) +
     coord_cartesian(xlim=c(0, max(data.site$pd_undev)), ylim=c(0, 12))+
     labs(x = "Local Patch Density \n(#/100 ha)", y = "Species Richness")  +
@@ -909,7 +909,7 @@
                 fill = calle[2], alpha = 0.5) +
     geom_smooth(data = preds_sd_pd, aes(x = cov1, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[5])+
-    theme_bw() + 
+    theme_classic() + 
     scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(2, 4, 6, 8, 10, 12)) +
     coord_cartesian(xlim=c(0, max(data.site$pd_undev)), ylim=c(3, 12))+
     labs(x = "Local Patch Density \n(#/100 ha)", y = "Species Diversity")  +
@@ -940,7 +940,7 @@
                 fill = calle[6], alpha = 0.5) +
     geom_smooth(data = preds_sr_ag, aes(x = cov1*100, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[9])+
-    theme_bw() + 
+    theme_classic() + 
     scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(0, 3, 6, 9, 12)) +
     coord_cartesian(xlim=c(0, max(data.site$cropland*100)), ylim=c(0, 12)) +
     labs(x = "Local Agricultural Footprint \n(% Land Cover)", y = "Species Richness") +
@@ -972,7 +972,7 @@
                 fill = calle[6], alpha = 0.5) +
     geom_smooth(data = preds_sd_ag, aes(x = cov1*100, y = median, ymin = lower95, ymax = upper95),
                 se = FALSE, color = calle[9])+
-    theme_bw() + 
+    theme_classic() + 
     scale_y_continuous(labels = label_number(accuracy = 0.1), breaks = c(2, 4, 6, 8, 10, 12)) +
     coord_cartesian(xlim=c(0, max(data.site$cropland*100)), ylim=c(3, 12)) +
     labs(x = "Local Agricultural Footprint \n(% Land Cover)", y = "Species Diversity") +
@@ -1148,7 +1148,7 @@
   # To provide maximum contrast, compare a low EVI city (Phoenix) to high EVI city (Sanford) with similar temperatures
   data.plot <- data.plot.sr.city
   plot.sr <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = EVI), 
                 alpha = 0.3) + 
     geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = EVI), 
@@ -1170,7 +1170,7 @@
   
   data.plot <- data.plot.sd.city
   plot.sd <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = EVI), 
                 alpha = 0.3) + 
     geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = EVI), 
@@ -1196,7 +1196,7 @@
   # compare a low  MAT city (Salt Lake City) to high MAT city (Metro LA) with similar average EVI (0.19)
   data.plot <- data.plot.sr.city
   plot.sr <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = MAT), 
                 alpha = 0.3) + 
     #geom_smooth(data = data.plot, aes(x = urban, y = median, group = city),se = FALSE, color = "grey70", lwd = 1.2) +
@@ -1219,7 +1219,7 @@
   
   data.plot <- data.plot.sd.city
   plot.sd <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = MAT), 
                 alpha = 0.3) + 
     geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = MAT), 
@@ -1247,7 +1247,7 @@
   # But, two cities with low URB (Salt Lake) and high URB (Chicago), but similar other covariates
   data.plot <- data.plot.sr.city
   plot.sr <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = URB), 
                 alpha = 0.3) + 
     geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = URB), 
@@ -1268,7 +1268,7 @@
   
   data.plot <- data.plot.sd.city
   plot.sd <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = URB), 
                 alpha = 0.3) + 
     geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = URB), 
@@ -1297,7 +1297,7 @@
   # there are cities with larger age differences, but they end up having very different EVI and MAT as well
   data.plot <- data.plot.sr.city
   plot.sr <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = AGE), 
                 alpha = 0.3) + 
     geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = AGE), 
@@ -1318,7 +1318,7 @@
   
   data.plot <- data.plot.sd.city
   plot.sd <- ggplot() +
-    theme_bw() + 
+    theme_classic() + 
     geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = AGE), 
                 alpha = 0.3) + 
     geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = AGE), 

@@ -306,7 +306,7 @@
     # Plot Relationships Across Regional EVI Gradient ====
       data.plot <- preds.urbEVI
       plot.evi <- ggplot(data = data.plot, aes(x = impervious, y = psi_med, group = city)) +
-        theme_bw() + 
+        theme_classic() + 
         #geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
         geom_smooth(aes(x = impervious, y = psi_med, group = city, color = EVI, linetype = as.factor(EVI)), se = FALSE)+
         geom_ribbon(aes(x = impervious, y = psi_med, group = city, ymin = psi_low95, ymax = psi_upp95, fill = EVI), 
@@ -337,13 +337,13 @@
       # Plot Relationships Across Regional MAT Gradient ====
       data.plot <- preds.urbMAT
       plot.mat <- ggplot(data = data.plot) +
-        theme_bw() + 
+        theme_classic() + 
         #geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
         geom_smooth(aes(x = impervious, y = psi_med, group = city, color = MAT, linetype = as.factor(MAT)), se = FALSE)+
         geom_ribbon(aes(x = impervious, y = psi_med, group = city, ymin = psi_low95, ymax = psi_upp95, fill = MAT), 
                     alpha = 0.4) + 
         #gghighlight(city %in% c("scut", "mela"))+
-        theme_bw() + 
+        theme_classic() + 
         scale_fill_distiller(palette = "RdYlBu", direction = -1)+
         scale_color_distiller(palette = "RdYlBu", direction = -1)+
         scale_y_continuous(labels = label_number(accuracy = 0.1)) +
@@ -371,13 +371,13 @@
       # Plot Relationships Across Regional URB Gradient ====
       data.plot <- preds.urbURB
       plot.urb <- ggplot(data = data.plot) +
-        theme_bw() + 
+        theme_classic() + 
         #geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
         geom_smooth(aes(x = impervious, y = psi_med, group = city, color = URB, linetype = as.factor(URB)), se = FALSE)+
         geom_ribbon(aes(x = impervious, y = psi_med, group = city, ymin = psi_low95, ymax = psi_upp95, fill = URB), 
                     alpha = 0.4) + 
         #gghighlight(city %in% c("scut", "chil"))+
-        theme_bw() + 
+        theme_classic() + 
         scale_fill_distiller(palette = "PuOr", direction = 1)+
         scale_color_distiller(palette = "PuOr", direction = 1)+
         scale_y_continuous(labels = label_number(accuracy = 0.1)) +
@@ -405,7 +405,7 @@
       # Plot Relationships Across Regional AGE Gradient ====
       data.plot <- preds.urbAGE
       plot.age <- ggplot(data = data.plot) +
-        theme_bw() + 
+        theme_classic() + 
         #geom_smooth(aes(x = impervious, y = psi_med, group = city), color = "gray20", se = FALSE, lwd = 1.2)+
         geom_smooth(aes(x = impervious, y = psi_med, group = city, color = AGE, linetype = as.factor(AGE)), se = FALSE)+
         geom_ribbon(aes(x = impervious, y = psi_med, group = city, ymin = psi_low95, ymax = psi_upp95, fill = AGE), 
@@ -836,7 +836,7 @@
       plot.psi1 <- ggplot(data = data.plot, aes(x = impervious, y = psi_urb_med)) +
         geom_ribbon(aes(ymin = psi.urb2.5, ymax = psi.urb97.5), fill = calle[7], alpha = 0.5) +
         geom_smooth(se = FALSE, color = calle[8])+
-        theme_bw() + 
+        theme_classic() + 
         #geom_point(color = calle[8])+
         scale_y_continuous(labels = label_number(accuracy = 0.01)) +
         coord_cartesian(xlim=c(0, max(data.site$Impervious)), ylim=c(0,0.4))+
@@ -860,7 +860,7 @@
       plot.psi2 <- ggplot(data = data.plot, aes(x = pd, y = psi_pd_med)) +
         geom_ribbon(aes(ymin = psi.pd2.5, ymax = psi.pd97.5), fill =  calle[2], alpha = 0.5) +
         geom_smooth(se = FALSE, color =  calle[5])+
-        theme_bw() + 
+        theme_classic() + 
         #geom_point(color =  calle[5])+
         scale_y_continuous(labels = label_number(accuracy = 0.01)) +
         coord_cartesian(xlim=c(0, max(data.site$pd_undev)), ylim=c(0,0.4))+
@@ -884,7 +884,7 @@
       plot.psi3 <- ggplot(data = data.plot, aes(x = ag, y = psi_ag_med)) +
         geom_ribbon(aes(ymin = psi.ag2.5, ymax = psi.ag97.5), fill =  calle[6], alpha = 0.5) +
         geom_smooth(se = FALSE, color =  calle[9])+
-        theme_bw() + 
+        theme_classic() + 
         #geom_point(color =  calle[9])+
         scale_y_continuous(labels = label_number(accuracy = 0.01)) +
         coord_cartesian(xlim=c(0, max(data.site$cropland)), ylim=c(0,0.4))+
@@ -1062,25 +1062,25 @@
       colnames(psi.city.int)[6:8] <- c("lower95", "median", "upper95")
       
       ggplot(data = psi.city.int, aes(x = EVI, y = median, ymin = lower95, ymax = upper95)) +
-        theme_bw() +
+        theme_classic() +
         geom_errorbar(col = "gray20", lwd = 1.3) +
         geom_errorbar(aes(col = EVI), lwd = 1.2)+
         geom_point(size = 3)
       
       ggplot(data = psi.city.int, aes(x = MAT, y = median, ymin = lower95, ymax = upper95)) +
-        theme_bw() +
+        theme_classic() +
         geom_errorbar(col = "gray20", lwd = 1.3) +
         geom_errorbar(aes(col = MAT), lwd = 1.2)+
         geom_point(size = 3)
       
       ggplot(data = psi.city.int, aes(x = URB, y = median, ymin = lower95, ymax = upper95)) +
-        theme_bw() +
+        theme_classic() +
         geom_errorbar(col = "gray20", lwd = 1.3) +
         geom_errorbar(aes(col = URB), lwd = 1.2)+
         geom_point(size = 3)
       
       ggplot(data = psi.city.int, aes(x = AGE, y = median, ymin = lower95, ymax = upper95)) +
-        theme_bw() +
+        theme_classic() +
         geom_errorbar(col = "gray20", lwd = 1.3) +
         geom_errorbar(aes(col = AGE), lwd = 1.2)+
         geom_point(size = 3)
@@ -1091,7 +1091,7 @@
       
       #### EVI
       ggplot() +
-        theme_bw() + 
+        theme_classic() + 
         geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = EVI), 
                     se = FALSE) +
         geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = EVI), 
@@ -1112,7 +1112,7 @@
       
       #### Temperature
       ggplot() +
-        theme_bw() + 
+        theme_classic() + 
         geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = MAT), 
                     alpha = 0.3) + 
         geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = MAT), 
@@ -1134,7 +1134,7 @@
       
       #### Regional Urbanization
       ggplot() +
-        theme_bw() + 
+        theme_classic() + 
         geom_ribbon(data = data.plot, aes(x = impervious, y = median, group = city, ymin = lower95, ymax = upper95, fill = URB), 
                     alpha = 0.3) + 
         geom_smooth(data = data.plot, aes(x = impervious, y = median, group = city, color = URB), 
@@ -1152,4 +1152,5 @@
               legend.position = "none",
               legend.margin = margin(t = 5, r = 74, b = 5, l = 5, unit = "pt")  #top, right, bottom, left
         ) 
+      
       
